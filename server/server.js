@@ -1,7 +1,11 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var express = require('express');
+var path = require('path');
 
 var app = module.exports = loopback();
+
+app.use(express.static(path.join(__dirname, '../client/www')));
 
 app.start = function() {
   // start the web server

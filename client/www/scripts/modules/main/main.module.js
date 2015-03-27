@@ -7,6 +7,7 @@ var Main = angular.module('Main', [
   'ngCookies',
   'HelloWorld',
   'Common',
+  'bbPoolApi',
   'ui.bootstrap',
   'ui.utils'
 ]);

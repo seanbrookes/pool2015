@@ -25,5 +25,21 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "draftpick": {
+    "dataSource": "bbpool2015",
+    "public": true
+  },
+  "rawbatterid": {
+    "dataSource": "bbpool2015",
+    "public": true
+  },
+  "rawpitcherid": {
+    "dataSource": "bbpool2015",
+    "public": true
+  },
+  "roster": {
+    "dataSource": "bbpool2015",
+    "public": true
   }
 }
