@@ -1,3 +1,31 @@
 <div data-id="ProtectedListContainer">
-  <div ng-repeat="roster in rosters">{{ roster.name }}</div>
+  Hello World
+
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div ng-repeat="roster in rosters" class="col-md-3">
+      {{ roster.name }}
+      <div data-ui-type="table">
+        <div ng-repeat="player in roster.players" data-ui-type="row">
+          <div data-ui-type="cell">
+            <input type="checkbox"
+                   ng-change="upateProtectedStatus()"
+                   ng-model="player.status"
+                   ng-true-value="protected" />
+            {{player.status}}
+          </div>
+          <div data-ui-type="cell">
+            {{player.name}}
+          </div>
+          <div data-ui-type="cell">
+            {{player.pos}}
+          </div>
+          <div data-ui-type="cell">
+            {{player.team}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

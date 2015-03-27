@@ -1,8 +1,20 @@
 Roster.controller('RosterProtectedController', [
   '$scope',
   '$log',
-  function($scope, $log) {
+  'RosterService',
+  function($scope, $log, RosterService) {
     $log.debug('Roster Protected Controller');
+
+    $scope.rosters = RosterService.getAllRosters()
+      .then(function(rosters) {
+        $scope.rosters = rosters;
+      });
+
+    $scope.upateProtectedStatus = function() {
+      var self = this;
+      $log.debug('what is this: ' + self.player.status);
+      RosterService.updateRoster(self.$parent.roster);
+    }
   }
 ]);
 
