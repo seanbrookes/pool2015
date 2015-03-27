@@ -1,0 +1,50 @@
+<p>draft main template</p>
+  <!--<div class="postGridStyle" ng-grid="draftGridOptions"></div>-->
+<div id="PickForm" name="PickForm" ng-show="showPickForm">
+  <label>round: <input type="text" ng-model="ePick.roster"></label>
+  <label>round: <input type="text" ng-model="ePick.round"></label>
+  <label>pick: <input type="text" ng-model="ePick.pickNumber"></label>
+  <label>player: <input type="text" ng-model="ePick.name"></label>
+  <label>pos: <input type="text" ng-model="ePick.pos"></label>
+  <label>team: <input type="text" ng-model="ePick.team"></label>
+  <input type="button" ng-click="savePick(ePick)" value="save" />
+</div>
+
+  <table class="draft-table">
+    <tr>
+      <th>
+        pk
+      </th>
+      <th>
+        rnd
+      </th>
+      <th>
+        roster
+      </th>
+      <th>
+        player
+      </th>
+      <th>
+        pos
+      </th>
+      <th>
+        tm
+      </th>
+      <th>
+
+      </th>
+
+    </tr>
+    <tr ng-repeat="pick in draftPicks | orderBy:['pickNumber'] ">
+      <td>{{ pick.pickNumber }}</td>
+      <td>{{ pick.round }}</td>
+      <td>{{ pick.roster }}</td>
+      <td>{{ pick.name }}</td>
+      <td>{{ pick.pos }}</td>
+      <td>{{ pick.team }}</td>
+      <td>
+        <button ng-click="editPick(pick)" ng-model="pick" ng-show="isGod">edit</button>
+        <!--<button ng-click="deletePick(pick)" ng-model="pick" ng-show="isGod">delete</button>-->
+      </td>
+    </tr>
+  </table>

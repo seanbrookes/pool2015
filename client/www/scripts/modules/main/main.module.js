@@ -7,6 +7,10 @@ var Main = angular.module('Main', [
   'ngCookies',
   'HelloWorld',
   'Common',
+  'Admin',
+  'Roster',
+  'Draft',
+  'Stats',
   'bbPoolApi',
   'ui.bootstrap',
   'ui.utils'
@@ -25,6 +29,26 @@ Main.config([
         url: '/',
         templateUrl: './scripts/modules/main/templates/main.html',
         controller: 'MainController'
+      })
+      .state('roster', {
+        url:'/roster/:name',
+        controller:'RosterMainController',
+        templateUrl:'./scripts/modules/roster/templates/roster.main.html'
+      })
+      .state('adminroster', {
+        url:'/adminroster',
+        controller:'RosterAdminController',
+        templateUrl:'./scripts/modules/admin/templates/admin.roster.html'
+      })
+      .state('protected', {
+        url:'/protected',
+        controller:'RosterProtectedController',
+        templateUrl:'./scripts/modules/roster/templates/roster.protected.html'
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: './scripts/modules/admin/templates/admin.main.html',
+        controller: 'AdminMainController'
       });
 
   }
