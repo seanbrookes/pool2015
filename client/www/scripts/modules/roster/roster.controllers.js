@@ -7,13 +7,70 @@ Roster.controller('RosterProtectedController', [
 
     $scope.rosters = RosterService.getAllRosters()
       .then(function(rosters) {
+        var rosters = [];
+
         $scope.rosters = rosters;
       });
+    function refreshProtectedRosters() {
+      $scope.protectedRrosters = RosterService.getAllRosters()
+        .then(function(rosters) {
+          $scope.protectedRrosters = [];
+          rosters.map(function(roster) {
+            var sortedRoster = $scope.protectedSort(roster);
+            $scope.protectedRrosters.push(sortedRoster);
+          });
+
+          //$scope.rosters = rosters;
+        });
+    }
+    $scope.protectedRrosters = RosterService.getAllRosters()
+      .then(function(rosters) {
+        $scope.protectedRrosters = [];
+        rosters.map(function(roster) {
+          var sortedRoster = $scope.protectedSort(roster);
+          $scope.protectedRrosters.push(sortedRoster);
+        });
+
+        //$scope.rosters = rosters;
+      });
+
+    $scope.getPlayerRowClass = function(index) {
+      if (index < 11) {
+        return 'protected-row';
+      }
+      return;
+    };
+
+    $scope.protectedSort = function(roster) {
+      var retArray = [];
+      var protectedArray = [];
+      var unprotectedArray = [];
+      roster.players.map(function(player) {
+        if (player.status === 'protected') {
+          protectedArray.push(player);
+        }
+        else {
+          unprotectedArray.push(player);
+        }
+
+      });
+
+      // merge the arrays
+      roster.players = protectedArray.concat(unprotectedArray);
+
+      return roster;
+
+    };
 
     $scope.upateProtectedStatus = function() {
       var self = this;
       $log.debug('what is this: ' + self.player.status);
-      RosterService.updateRoster(self.$parent.roster);
+      RosterService.updateRoster(self.$parent.roster)
+        .$promise
+        .then(function(response) {
+          refreshProtectedRosters();
+        });
+
     }
   }
 ]);

@@ -10,6 +10,7 @@ var Main = angular.module('Main', [
   'Admin',
   'Roster',
   'Draft',
+  'Auth',
   'Stats',
   'bbPoolApi',
   'ui.bootstrap',
@@ -34,6 +35,11 @@ Main.config([
         url:'/roster/:name',
         controller:'RosterMainController',
         templateUrl:'./scripts/modules/roster/templates/roster.main.html'
+      })
+      .state('authuser', {
+        url:'/authuser/:slug',
+        controller:'AuthUserController',
+        templateUrl:'./scripts/modules/auth/templates/auth.user.html'
       })
       .state('adminroster', {
         url:'/adminroster',

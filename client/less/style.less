@@ -29,7 +29,35 @@ body {
   vertical-align: top;
 
 }
-[data-id="ProtectedListContainer"] [data-ui-type="row"]{
 
 
+.protected-list-container {
+
+  [data-ui-type="table"] {
+
+    max-width: 50rem;
+  }
+
+  [data-ui-type="row"] {
+
+    .protected-col {
+      width: 8rem;
+      text-align: center;
+    }
+    .pos-col {
+      width: 8rem;
+    }
+    .team-col {
+      width: 8rem;
+    }
+
+    [data-ui-type="cell"]{
+      border-bottom: 1px solid #ffffff;
+    }
+
+    &.protected-row {
+      background-color: #D5E4EA;
+    }
+
+  }
 }

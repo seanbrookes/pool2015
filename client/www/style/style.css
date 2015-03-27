@@ -26,3 +26,22 @@ body {
   display: table-cell;
   vertical-align: top;
 }
+.protected-list-container [data-ui-type="table"] {
+  max-width: 50rem;
+}
+.protected-list-container [data-ui-type="row"] .protected-col {
+  width: 8rem;
+  text-align: center;
+}
+.protected-list-container [data-ui-type="row"] .pos-col {
+  width: 8rem;
+}
+.protected-list-container [data-ui-type="row"] .team-col {
+  width: 8rem;
+}
+.protected-list-container [data-ui-type="row"] [data-ui-type="cell"] {
+  border-bottom: 1px solid #ffffff;
+}
+.protected-list-container [data-ui-type="row"].protected-row {
+  background-color: #D5E4EA;
+}
