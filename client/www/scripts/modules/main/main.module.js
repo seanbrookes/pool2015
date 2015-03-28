@@ -47,7 +47,7 @@ Main.config([
         templateUrl:'./scripts/modules/admin/templates/admin.roster.html'
       })
       .state('protected', {
-        url:'/protected',
+        url:'/protected/:slug',
         controller:'RosterProtectedController',
         templateUrl:'./scripts/modules/roster/templates/roster.protected.html'
       })

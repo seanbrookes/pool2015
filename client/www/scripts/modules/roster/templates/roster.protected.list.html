@@ -1,7 +1,7 @@
 <div class="protected-list-container">
-  <tabset>
-    <tab  ng-repeat="roster in protectedRrosters | orderBy: slug"
+    <div  ng-repeat="roster in protectedRrosters"
           class="col-md-3"
+          ng-hide="currentRoster !== roster.slug"
           heading="{{ roster.name }}">
       <div class="col-md-9 col-md-offset-2">
         <h2>{{ roster.name }}</h2>
@@ -39,8 +39,8 @@
         </div>
       </div>
 
-    </tab>
-  </tabset>
+    </div>
+
 </div>
 <!--<div class="container-fluid">-->
   <!--<div class="row">-->

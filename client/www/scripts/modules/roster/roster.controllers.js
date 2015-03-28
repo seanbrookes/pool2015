@@ -5,6 +5,8 @@ Roster.controller('RosterProtectedController', [
   function($scope, $log, RosterService) {
     $log.debug('Roster Protected Controller');
 
+    $scope.currentProtectedRoster = 'bashers';
+
     $scope.rosters = RosterService.getAllRosters()
       .then(function(rosters) {
         var rosters = [];
