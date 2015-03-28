@@ -26,6 +26,9 @@ body {
   display: table-cell;
   vertical-align: top;
 }
+.draft-table {
+  min-width: 45rem;
+}
 .protected-container .protected-nav-list {
   list-style: none;
 }

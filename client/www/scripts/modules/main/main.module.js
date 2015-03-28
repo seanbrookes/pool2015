@@ -51,6 +51,16 @@ Main.config([
         controller:'RosterProtectedController',
         templateUrl:'./scripts/modules/roster/templates/roster.protected.html'
       })
+      .state('generate',{
+        url:'/generate',
+        controller:'GenListController',
+        templateUrl:'./scripts/modules/draft/templates/draft.main.html'
+      })
+      .state('draft', {
+        url:'/draft',
+        controller:'DraftMainController',
+        templateUrl:'./scripts/modules/draft/templates/draft.main.html'
+      })
       .state('admin', {
         url: '/admin',
         templateUrl: './scripts/modules/admin/templates/admin.main.html',

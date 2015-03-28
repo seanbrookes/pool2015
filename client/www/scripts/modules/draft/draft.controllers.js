@@ -66,9 +66,9 @@ Draft.controller('DraftMainController',[
 
     };
 
-    $scope.isGod = function(){
+    $scope.isDog = function(){
       if(localStorage.getItem('homeRoster')){
-        if (localStorage.getItem('homeRoster') === 'god'){
+        if (localStorage.getItem('homeRoster') === 'dog'){
           return true;
         }
         return false;
@@ -146,11 +146,11 @@ Draft.controller('GenListController',[
     console.log('Generate Draft List');
     var roundIndex = 1;
     var pickIndex = 1;
-    var rosterArray = ['bashers','stallions','mashers','rallycaps','rallycaps','mashers','stallions','bashers'];
+    var rosterArray = ['bashers','rallycaps','mashers','stallions','stallions','mashers','rallycaps','bashers'];
 
 
 
-    for (var i = 0;i < 10;i++){
+    for (var i = 0;i < 12;i++){
       for (var j = 0;j < rosterArray.length;j++){
         if (j === 4){
           roundIndex++;
@@ -165,14 +165,14 @@ Draft.controller('GenListController',[
           round: roundIndex,
           roster: rosterArray[j]
         };
-//        Draftpick.create(dpObj,
-//          function(response){
-//            console.log('good add draft pick');
-//          },
-//          function(response){
-//            console.log('bad add draft pick');
-//          }
-//        );
+        //Draftpick.create(dpObj,
+        //  function(response){
+        //    console.log('good add draft pick');
+        //  },
+        //  function(response){
+        //    console.log('bad add draft pick');
+        //  }
+        //);
         pickIndex++;
 
         if (j === 7){
