@@ -1,4 +1,4 @@
-<p>draft main template</p>
+<p>draft board</p>
   <!--<div class="postGridStyle" ng-grid="draftGridOptions"></div>-->
 <div id="PickForm" name="PickForm" ng-show="showPickForm">
   <label>round: <input type="text" ng-model="ePick.roster"></label>
@@ -44,7 +44,7 @@
       <td>{{ pick.team }}</td>
       <td>
         <button ng-click="editPick(pick)" ng-model="pick" ng-show="isDog()">edit</button>
-        <!--<button ng-click="deletePick(pick)" ng-model="pick" ng-show="isGod">delete</button>-->
+        <button ng-click="deletePick(pick)" ng-model="pick" ng-show="isDog">delete</button>
       </td>
     </tr>
   </table>
