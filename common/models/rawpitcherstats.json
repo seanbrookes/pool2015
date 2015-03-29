@@ -1,5 +1,5 @@
 {
-  "name": "rawbatterid",
+  "name": "rawpitcherstats",
   "base": "PersistedModel",
   "strict": false,
   "idInjection": false,

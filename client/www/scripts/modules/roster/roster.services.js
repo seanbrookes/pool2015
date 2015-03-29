@@ -20,6 +20,31 @@ Roster.service('RosterService',[
           $log.warn('bad get all rosters: ' + JSON.stringify(error));
         })
     };
+    svc.getRoster = function(slug) {
+      var filter = {
+        'filter[where][slug]':slug
+      };
+      return Roster.query(filter)
+        .$promise
+        .then(function(response) {
+          return response[0];
+        })
+        .catch(function(error) {
+          $log.warn('bad get roster: ' + error.message);
+        });
+
+      //var filter = {
+      //  'filter[where][roster]':slug
+      //};
+      //return Roster.find(filter)
+      //  .$promise
+      //  .then(function(response) {
+      //    return response;
+      //  })
+      //  .catch(function(error) {
+      //    $log.warn('bad get roster: ' + JSON.stringify(error));
+      //  })
+    };
     svc.updateRoster = function(roster) {
       delete roster._id;
       return Roster.upsert(roster,

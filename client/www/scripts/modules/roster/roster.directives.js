@@ -1,3 +1,112 @@
+Roster.directive('bbpPlayerForm', [
+  function() {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/roster/templates/player.form.html',
+      controller: [
+        '$scope',
+        '$log',
+        'Roster',
+        function($scope, $log, Roster) {
+          $scope.clearEditPlayer = function() {
+            delete $scope.currentEditRoster.editPlayer;
+
+
+
+          };
+          $scope.saveEditPlayer = function() {
+            var rosterObj = $scope.currentEditRoster;
+            delete rosterObj._id;
+            Roster.upsert(rosterObj,
+              function(response){
+                console.log('good update roster');
+                var filter = {
+                  'filter[where][slug]':$scope.currentRosterName
+                };
+                $scope.currentRoster = Roster.query(filter);
+                $scope.currentRoster.$promise.then(function (result) {
+                  $scope.currentRoster = result[0];
+
+                  $scope.players = $scope.currentRoster.players;
+                  $scope.player = {
+                    draftStatus:'roster',
+                    status:'regular',
+                    posType:'hitter'
+                  };
+                });
+              },
+              function(response){
+                console.log('bad update roster');
+              }
+            );
+
+          }
+
+        }
+      ]
+    }
+  }
+]);
+Roster.directive('bbpRosterEdit', [
+  function() {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/roster/templates/roster.edit.html',
+      controller: [
+        '$scope',
+        '$log',
+        'RosterService',
+        'Roster',
+        '$state',
+        '$stateParams',
+        function ($scope, $log, RosterService, Roster, $state, $stateParams) {
+
+          $scope.currentEditRoster = {
+            slug:'bashers'
+          };
+
+          if ($stateParams.slug) {
+
+            $scope.currentEditRoster.slug = $stateParams.slug;
+
+          }
+
+
+          $scope.updatePlayerPos = function() {
+            Roster.upsert($scope.currentEditRoster.roster,
+              function(response){
+                console.log('good update roster');
+                $scope.currentEditRoster = RosterService.getRoster($scope.currentEditRoster.slug)
+                  .then(function(roster) {
+                    roster.players = $scope.positionSort(roster);
+
+                    $scope.currentEditRoster.roster = roster;
+                  });
+              },
+              function(response){
+                console.log('bad update roster');
+              }
+            );
+          };
+
+          $scope.editPlayer = function(player) {
+            $scope.currentEditRoster.editPlayer = player;
+          };
+
+          // init the roster for editing
+          $scope.currentEditRoster = RosterService.getRoster($scope.currentEditRoster.slug)
+            .then(function(roster) {
+              roster.players = $scope.positionSort(roster);
+
+              $scope.currentEditRoster.roster = roster;
+            });
+
+        }
+      ]
+    }
+  }
+]);
+
 Roster.directive('bbpProtectedRoster', [
   function() {
     return {

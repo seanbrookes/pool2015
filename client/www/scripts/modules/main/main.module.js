@@ -32,7 +32,7 @@ Main.config([
         controller: 'MainController'
       })
       .state('roster', {
-        url:'/roster/:name',
+        url:'/roster/:slug',
         controller:'RosterMainController',
         templateUrl:'./scripts/modules/roster/templates/roster.main.html'
       })

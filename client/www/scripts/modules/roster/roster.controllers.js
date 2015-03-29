@@ -94,11 +94,13 @@ Roster.controller('RosterMainController',[
     $scope.starterTotal = 0;
     $scope.closerTotal = 0;
 
-    $scope.player = {
-      draftStatus:'roster',
-      status:'regular',
-      posType:'hitter'
-    };
+    //$scope.player = {
+    //  draftStatus:'roster',
+    //  status:'regular',
+    //  posType:'hitter'
+    //};
+    $scope.player = {};
+
 //    var filter = {
 //      'filter[where][roster]':$scope.currentRosterName,
 //      'filter[order]':'lastUpdate DESC',
@@ -110,6 +112,80 @@ Roster.controller('RosterMainController',[
       'filter[order]':'lastUpdate DESC'
     };
    // $scope.currentRoster = Roster.query(filter);
+
+    $scope.positionSort = function(roster) {
+      var cArray = [];
+      var oneBArray = [];
+      var twoBArray = [];
+      var threeBArray = [];
+      var ssArray = [];
+      var lfArray = [];
+      var cfArray = [];
+      var rfArray = [];
+      var dhArray = [];
+      var spArray = [];
+      var rpArray = [];
+      roster.players.map(function(player) {
+
+        switch(player.pos) {
+
+          case 'C':
+            cArray.push(player);
+            break;
+          case '1B':
+            oneBArray.push(player);
+            break;
+          case '2B':
+            twoBArray.push(player);
+            break;
+          case '3B':
+            threeBArray.push(player);
+            break;
+          case 'SS':
+            ssArray.push(player);
+            break;
+          case 'LF':
+            lfArray.push(player);
+            break;
+          case 'CF':
+            cfArray.push(player);
+            break;
+          case 'RF':
+            rfArray.push(player);
+            break;
+          case 'DH':
+            dhArray.push(player);
+            break;
+          case 'SP':
+            spArray.push(player);
+            break;
+          case 'RP':
+            rpArray.push(player);
+            break;
+
+          default:
+
+        }
+
+
+
+      });
+
+
+
+      // merge the arrays
+      var positionArray = cArray.concat(oneBArray)
+        .concat(twoBArray)
+        .concat(threeBArray)
+        .concat(ssArray)
+        .concat(lfArray)
+        .concat(cfArray)
+        .concat(rfArray)
+        .concat(dhArray);
+
+      return positionArray;
+
+    };
 
     /*
     *

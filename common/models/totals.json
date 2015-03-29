@@ -1,5 +1,5 @@
 {
-  "name": "rawpitcherid",
+  "name": "totals",
   "base": "PersistedModel",
   "strict": false,
   "idInjection": false,
