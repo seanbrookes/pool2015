@@ -1,3 +1,17 @@
-/**
- * Created by seanbrookes on 2014-03-27.
- */
+Draft.directive('bbpDraftBoard', [
+  function() {
+    return  {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.board.html'
+    }
+  }
+]);
+
+Draft.directive('bbpDraftMain', [
+  function() {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.main.html'
+    }
+  }
+]);

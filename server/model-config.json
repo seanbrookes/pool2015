@@ -61,5 +61,9 @@
   "totals": {
     "dataSource": "bbpool2015",
     "public": true
+  },
+  "chatmessage": {
+    "dataSource": "bbpool2015",
+    "public": true
   }
 }

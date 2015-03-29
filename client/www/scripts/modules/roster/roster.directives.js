@@ -2,7 +2,7 @@ Roster.directive('bbpPlayerForm', [
   function() {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/roster/templates/player.form.html',
+      templateUrl: './scripts/modules/roster/templates/roster.player.form.html',
       controller: [
         '$scope',
         '$log',
@@ -44,6 +44,67 @@ Roster.directive('bbpPlayerForm', [
 
         }
       ]
+    }
+  }
+]);
+
+Roster.directive('bbpDraftRosterView', [
+  function() {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/roster/templates/draft.roster.view.html'
+    }
+  }
+]);
+Roster.directive('bbpDraftRosterBashers', [
+  '$timeout',
+  function($timeout) {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      link: function(scope, el, attrs) {
+
+
+      }
+    }
+  }
+]);
+Roster.directive('bbpDraftRosterRallycaps', [
+  '$timeout',
+  function($timeout) {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      link: function(scope, el, attrs) {
+
+
+      }
+    }
+  }
+]);
+Roster.directive('bbpDraftRosterStallions', [
+  '$timeout',
+  function($timeout) {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      link: function(scope, el, attrs) {
+
+
+      }
+    }
+  }
+]);
+Roster.directive('bbpDraftRosterMashers', [
+  '$timeout',
+  function($timeout) {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      link: function(scope, el, attrs) {
+
+
+      }
     }
   }
 ]);
