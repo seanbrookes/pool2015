@@ -65,5 +65,9 @@
   "chatmessage": {
     "dataSource": "bbpool2015",
     "public": true
+  },
+  "rosterplayer": {
+    "dataSource": "bbpool2015",
+    "public": true
   }
 }

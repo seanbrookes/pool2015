@@ -5,8 +5,13 @@ Draft.controller('DraftMainController',[
   '$scope',
   'Draftpick',
   '$timeout',
-  function($scope, Draftpick, $interval){
+  'RosterService',
+  '$log',
+  function($scope, Draftpick, $timeout, $RosterService, $log){
     console.log('Draft Main Controller');
+
+    $scope.ePlayer = {};
+
     $scope.draftPicks = Draftpick.query({},
       function(response){
         //console.log('good get Draftpicks: ' + response);
@@ -66,6 +71,10 @@ Draft.controller('DraftMainController',[
 
     };
 
+    $scope.saveDraftBoardPlayer = function() {
+      $log.debug('save draft Board player: ' + JSON.stringify($scope.ePlayer));
+      $scope.ePlayer = {};
+    };
     $scope.isDog = function(){
       if(localStorage.getItem('homeRoster')){
         if (localStorage.getItem('homeRoster') === 'dog'){

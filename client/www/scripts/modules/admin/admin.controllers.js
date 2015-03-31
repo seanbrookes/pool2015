@@ -135,7 +135,7 @@ Admin.controller('RosterAdminController',[
 
       if (editConfirmed){
         var rosterObj = $scope.currentRoster;
-        delete rosterObj._id;
+        //delete rosterObj._id;
         Roster.upsert(rosterObj,
           function(response){
             console.log('good update roster');

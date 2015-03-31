@@ -1,14 +1,6 @@
 <div data-id="draft-board-container">
   <!--<div class="postGridStyle" ng-grid="draftGridOptions"></div>-->
-  <div id="PickForm" name="PickForm" ng-show="showPickForm">
-    <label>round: <input type="text" ng-model="ePick.roster"></label>
-    <label>round: <input type="text" ng-model="ePick.round"></label>
-    <label>pick: <input type="text" ng-model="ePick.pickNumber"></label>
-    <label>player: <input type="text" ng-model="ePick.name"></label>
-    <label>pos: <input type="text" ng-model="ePick.pos"></label>
-    <label>team: <input type="text" ng-model="ePick.team"></label>
-    <input type="button" ng-click="savePick(ePick)" value="save" />
-  </div>
+
 
   <table class="draft-table">
     <tr>
@@ -48,4 +40,19 @@
       </td>
     </tr>
   </table>
+</div>
+<div id="PickForm" name="PickForm" >
+  <label>type: <select  ng-model="ePlayer.status">
+    <option value="drafted">drafted</option>
+    <option value="protected">protected</option>
+    </select>
+  </label>
+  <br />
+  <label>roster: <input type="text" ng-model="ePlayer.roster"></label>
+  <label>round: <input type="text" ng-model="ePlayer.round"></label>
+  <label>pick: <input type="text" ng-model="ePlayer.pickNumber"></label>
+  <label>player: <input type="text" ng-model="ePlayer.name"></label>
+  <label>pos: <input type="text" ng-model="ePlayer.pos"></label>
+  <label>team: <input type="text" ng-model="ePlayer.team"></label>
+  <input type="button" ng-click="saveDraftBoardPlayer()" value="save" />
 </div>

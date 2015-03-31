@@ -48,11 +48,11 @@ Roster.directive('bbpPlayerForm', [
   }
 ]);
 
-Roster.directive('bbpDraftRosterView', [
+Roster.directive('bbpRosterDraftView', [
   function() {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/roster/templates/draft.roster.view.html'
+      templateUrl: './scripts/modules/roster/templates/roster.draft.view.html'
     }
   }
 ]);
@@ -61,8 +61,15 @@ Roster.directive('bbpDraftRosterBashers', [
   function($timeout) {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      templateUrl: './scripts/modules/roster/templates/roster.draft.list.b.html',
       link: function(scope, el, attrs) {
+        scope.dPlayers = [];
+        scope.$watch('rosterDraftCtx.bashersRoster', function(newRoster) {
+          if (newRoster && newRoster.players) {
+            //scope.dPlayers = newRoster.players;
+
+          }
+        }, true);
 
 
       }
@@ -74,8 +81,15 @@ Roster.directive('bbpDraftRosterRallycaps', [
   function($timeout) {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      templateUrl: './scripts/modules/roster/templates/roster.draft.list.r.html',
       link: function(scope, el, attrs) {
+        scope.dPlayers = [];
+        scope.$watch('rosterDraftCtx.rallycapsRoster', function(newRoster) {
+          if (newRoster && newRoster.players) {
+            //scope.dPlayers = newRoster.players;
+
+          }
+        }, true);
 
 
       }
@@ -87,9 +101,15 @@ Roster.directive('bbpDraftRosterStallions', [
   function($timeout) {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      templateUrl: './scripts/modules/roster/templates/roster.draft.list.s.html',
       link: function(scope, el, attrs) {
+        scope.dPlayers = [];
+        scope.$watch('rosterDraftCtx.stallionsRoster', function(newRoster) {
+          if (newRoster && newRoster.players) {
+           // scope.dPlayers = newRoster.players;
 
+          }
+        }, true);
 
       }
     }
@@ -100,9 +120,16 @@ Roster.directive('bbpDraftRosterMashers', [
   function($timeout) {
     return {
       restrict: 'E',
-      templateUrl: './scripts/modules/draft/templates/draft.roster.list.html',
+      templateUrl: './scripts/modules/roster/templates/roster.draft.list.m.html',
       link: function(scope, el, attrs) {
 
+        scope.dPlayers = [];
+        scope.$watch('rosterDraftCtx.mashersRoster', function(newRoster) {
+          if (newRoster && newRoster.players) {
+           // scope.dPlayers = newRoster.players;
+
+          }
+        }, true);
 
       }
     }
