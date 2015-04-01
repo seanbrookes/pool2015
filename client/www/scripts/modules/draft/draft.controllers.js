@@ -7,10 +7,10 @@ Draft.controller('DraftMainController',[
   '$timeout',
   'RosterService',
   '$log',
-  function($scope, Draftpick, $timeout, $RosterService, $log){
+  function($scope, Draftpick, $timeout, RosterService, $log){
     console.log('Draft Main Controller');
 
-    $scope.ePlayer = {};
+    $scope.ePlayer = {status:'drafted'};
 
     $scope.draftPicks = Draftpick.query({},
       function(response){
@@ -73,7 +73,27 @@ Draft.controller('DraftMainController',[
 
     $scope.saveDraftBoardPlayer = function() {
       $log.debug('save draft Board player: ' + JSON.stringify($scope.ePlayer));
-      $scope.ePlayer = {};
+
+      // get the roster
+      return RosterService.getRoster($scope.ePlayer.slug)
+        .then(function(roster) {
+          roster.players.push($scope.ePlayer);
+          return RosterService.updateRoster(roster)
+            .$promise
+                  .then(function(response) {
+                    $log.debug('added player');
+                    $scope.ePlayer = {status: 'drafted'};
+                    return;
+                  });
+                });
+      // add player to the players array
+      // save the roster
+
+
+
+
+
+     // $scope.ePlayer = {};
     };
     $scope.isDog = function(){
       if(localStorage.getItem('homeRoster')){

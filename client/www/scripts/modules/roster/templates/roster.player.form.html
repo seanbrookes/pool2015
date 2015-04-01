@@ -1,7 +1,13 @@
 <form ng-show="currentEditRoster.editPlayer" id="FormEditRosterPlayer" ng-model="currentEditRoster.editPlayer" class="forms columnar">
   <div>
     <!-- roster -->
-    <label >Roster: {{currentEditRoster.name}}</label>
+    <label >Roster:</label>
+    <select id="RosterSelect" ng-model="currentEditRoster.slug" class="roster-select">
+      <option value="bashers">bashers</option>
+      <option value="mashers">mashers</option>
+      <option value="rallycaps">rallycaps</option>
+      <option value="stallions">stallions</option>
+    </select>
   </div>
   <div>
     <!-- player name -->
@@ -77,7 +83,7 @@
     </select>
   </div>
   <div class="push">
-    <button class="btn btn-sm btn-primary" ng-click="saveEditPlayer()" ng-model="currentEditRoster.editPlayer">Save</button>
+    <button class="btn btn-sm btn-primary" ng-click="createPlayer()" ng-model="currentEditRoster.editPlayer">Save</button>
     <button class="btn btn-sm " ng-click="clearEditPlayer()" >clear</button>
   </div>
 </form>

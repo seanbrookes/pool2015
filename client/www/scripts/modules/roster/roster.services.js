@@ -56,6 +56,15 @@ Roster.service('RosterService',[
           return;
         });
     };
+    svc.deleteRosterPlayer = function(roster, player) {
+      roster.players.map(function(p, i) {
+        if (p.name === player.name) {
+          $log.debug('delete player at index: ' + i);
+          roster.players.splice(i, 1);
+        }
+      });
+      return svc.updateRoster(roster);
+    };
 
     var deferred = $q.defer();
     var slug = 'bashers';

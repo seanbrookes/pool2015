@@ -153,6 +153,8 @@ Roster.directive('bbpRosterEdit', [
             slug:'bashers'
           };
 
+          $scope.cRoster = {};
+
           if ($stateParams.slug) {
 
             $scope.currentEditRoster.slug = $stateParams.slug;
@@ -166,7 +168,24 @@ Roster.directive('bbpRosterEdit', [
                 console.log('good update roster');
                 $scope.currentEditRoster = RosterService.getRoster($scope.currentEditRoster.slug)
                   .then(function(roster) {
+
+                    var startersArray = [];
+                    var closersArray = [];
+
+                    roster.map(function(player) {
+                      if (player.pos === 'sp') {
+                        startersArray.push(player);
+                      }
+                      if (player.pos === 'rp') {
+                        closersArray.push(player);
+                      }
+                    });
+
+
                     roster.players = $scope.positionSort(roster);
+
+                    roster.players.concat(startersArray);
+                    roster.players.concat(closersArray);
 
                     $scope.currentEditRoster.roster = roster;
                   });
@@ -180,11 +199,48 @@ Roster.directive('bbpRosterEdit', [
           $scope.editPlayer = function(player) {
             $scope.currentEditRoster.editPlayer = player;
           };
+          $scope.deletePlayer = function(player) {
+            if (confirm('delete player? ')) {
+              RosterService.deleteRosterPlayer($scope.currentEditRoster.roster, player)
+                .$promise
+                .then(function(response) {
+                  $log.debug('player deleted');
+
+                });
+
+            }
+          };
 
           // init the roster for editing
           $scope.currentEditRoster = RosterService.getRoster($scope.currentEditRoster.slug)
             .then(function(roster) {
+
+
+              var startersArray = [];
+              var closersArray = [];
+
+              roster.players.map(function(player) {
+                if (player.pos === 'SP') {
+                  startersArray.push(player);
+                }
+                if (player.pos === 'RP') {
+                  closersArray.push(player);
+                }
+              });
+
+
               roster.players = $scope.positionSort(roster);
+
+              var plusStarters = roster.players.concat(startersArray);
+
+              var plusClosers = plusStarters.concat(closersArray);
+
+              roster.players = plusClosers;
+
+              //roster.players.concat(startersArray);
+              //roster.players.concat(closersArray);
+
+             // roster.players = $scope.positionSort(roster);
 
               $scope.currentEditRoster.roster = roster;
             });
