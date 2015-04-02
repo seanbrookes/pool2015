@@ -9,7 +9,7 @@
         <div data-ui-type="cell" >{{player.name}}</div>
         <div data-ui-type="cell">
           {{player.pos}}
-          <select id="PosSelect" ng-change="updatePlayerPos()" class="select-pos pick-property-edit" ng-model="player.pos"  data-type="pos">
+          <select ng-show="isDog()" id="PosSelect" ng-change="updatePlayerPos()" class="select-pos pick-property-edit" ng-model="player.pos"  data-type="pos">
             <option value="C">C</option>
             <option value="1B">1B</option>
             <option value="2B">2B</option>
@@ -25,8 +25,8 @@
         </div>
         <div data-ui-type="cell">{{player.team}}</div>
         <div data-ui-type="cell">
-          <button ng-click="editPlayer(player)">edit</button>
-          <button ng-click="deletePlayer(player)">delete</button>
+          <button ng-show="isDog()" ng-click="editPlayer(player)">edit</button>
+          <button ng-show="isDog()" ng-click="deletePlayer(player)">delete</button>
         </div>
       </div>
     </div>
