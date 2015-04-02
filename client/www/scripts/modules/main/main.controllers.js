@@ -6,6 +6,15 @@ Main.controller('MainController', [
     $scope.bbpCtx = {
       homeRoster: ''
     };
+    $scope.isDog = function(){
+      if(localStorage.getItem('homeRoster')){
+        if (localStorage.getItem('homeRoster') === 'dog'){
+          return true;
+        }
+        return false;
+      }
+      return false;
+    };
 
     if (window.localStorage && window.localStorage.getItem('homeRoster')) {
       $scope.bbpCtx.homeRoster = window.localStorage.getItem('homeRoster');
