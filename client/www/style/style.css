@@ -5,6 +5,12 @@ body {
   margin: 0;
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
 }
+.link-cmd {
+  border: 0;
+  background: transparent;
+  color: blue;
+  text-align: left;
+}
 .page-header {
   padding-bottom: 9px;
   margin: .2rem 0 20px;
@@ -41,6 +47,9 @@ body {
 }
 .header-main-nav-container ul li {
   display: inline-block;
+}
+[data-id="MLBContainer"] .mlb-mapped {
+  background-color: #B1F0B9;
 }
 .protected-container .protected-nav-list {
   list-style: none;

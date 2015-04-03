@@ -18,7 +18,8 @@
     "gulp": "~3.8.11",
     "gulp-less": "~3.0.2",
     "gulp-watch": "~4.2.0",
-    "gulp-batch": "~1.0.5"
+    "gulp-batch": "~1.0.5",
+    "request": "~2.54.0"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
