@@ -69,5 +69,13 @@
   "rosterplayer": {
     "dataSource": "bbpool2015",
     "public": true
+  },
+  "mlbbatters": {
+    "dataSource": null,
+    "public": true
+  },
+  "mlbpitchers": {
+    "dataSource": null,
+    "public": true
   }
 }

@@ -10,6 +10,7 @@ var Main = angular.module('Main', [
   'Admin',
   'Roster',
   'Draft',
+  'MLB',
   'Auth',
   'Stats',
   'bbPoolApi',
@@ -40,6 +41,11 @@ Main.config([
         url:'/authuser/:slug',
         controller:'AuthUserController',
         templateUrl:'./scripts/modules/auth/templates/auth.user.html'
+      })
+      .state('mlb', {
+        url:'/mlb',
+        controller:'MLBMainController',
+        templateUrl:'./scripts/modules/mlb/templates/mlb.main.html'
       })
       .state('adminroster', {
         url:'/adminroster',
