@@ -2,7 +2,8 @@ module.exports = function(Mlbpitchers) {
   var request = require('request');
   var http = require("http");
 //  var pitchersUrl = "http://mlb.mlb.com/pubajax/wf/flow/stats.splayer?season=2014&sort_order='desc'&sort_column='avg'&stat_type=pitching&page_type=SortablePlayer&game_type='R'&player_pool=ALL&season_type=ANY&league_code='AL'&sport_code='mlb'&results=1000&recSP=1&recPP=900"; 
-  var pitchersUrl = "http://mlb.mlb.com/pubajax/wf/flow/stats.splayer?season=2014&sort_order='desc'&sort_column='avg'&stat_type=hitting&page_type=SortablePlayer&game_type='R'&player_pool=ALL&season_type=ANY&league_code='AL'&sport_code='mlb'&results=1000&recSP=1&recPP=900"; 
+  //var pitchersUrl = "http://mlb.mlb.com/pubajax/wf/flow/stats.splayer?season=2014&sort_order='desc'&sort_column='avg'&stat_type=hitting&page_type=SortablePlayer&game_type='R'&player_pool=ALL&season_type=ANY&league_code='AL'&sport_code='mlb'&results=1000&recSP=1&recPP=900"; 
+  var pitchersUrl = "http://mlb.mlb.com/pubajax/wf/flow/stats.splayer?season=2015&sort_order=%27asc%27&sort_column=%27era%27&stat_type=pitching&page_type=SortablePlayer&game_type=%27R%27&player_pool=QUALIFIER&season_type=ANY&league_code=%27AL%27&sport_code=%27mlb%27&results=1000&position=%271%27&recSP=1&recPP=999"; 
 
 
   Mlbpitchers.fetchPitchers = function(cb) {
@@ -45,12 +46,12 @@ module.exports = function(Mlbpitchers) {
           var newRecord = {};
           var tPlayer = statsResult[i];
 
-          newRecord.mlbid = tPlayer.player_id;
-          newRecord.name = tPlayer.name_display_first_last;
-          newRecord.team = tPlayer.team_abbrev;
+          tPlayer.mlbid = tPlayer.player_id;
+          tPlayer.name = tPlayer.name_display_first_last;
+          tPlayer.team = tPlayer.team_abbrev;
 
 
-          returnArray.push(newRecord);
+          returnArray.push(tPlayer);
           //RawPitchers.create(newRecord, function(err,doc){
           //  console.log('created pitcher record');
           //})

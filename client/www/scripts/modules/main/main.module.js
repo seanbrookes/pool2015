@@ -42,6 +42,11 @@ Main.config([
         controller:'AuthUserController',
         templateUrl:'./scripts/modules/auth/templates/auth.user.html'
       })
+      .state('statsupdate', {
+        url:'/statsupdate',
+        controller:'StatsUpdateMainController',
+        templateUrl:'./scripts/modules/stats/templates/stats.update.html'
+      })
       .state('mlb', {
         url:'/mlb',
         controller:'MLBMainController',

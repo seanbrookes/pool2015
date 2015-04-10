@@ -1,6 +1,57 @@
-/**
- * Created by seanbrookes on 2014-04-11.
- */
+Stats.controller('StatsUpdateMainController', [
+  '$scope',
+  '$log',
+  'MLBServices',
+  'RosterService',
+  function($scope, $log, MLBServices, RosterService) {
+    $log.debug('Stats Update Main Controller');
+    $scope.statsCtx = {
+      currentRosters: [],
+      currentRoster: {},
+      currentRosterPLayerList: [],
+      currentNetMlbHitters: [],
+      currentNetMlbPitchers: [],
+      mlbHitters: [],
+      mlbPitchers: []
+    };
+    $scope.statsCtx.currentRosters = RosterService.getAllRosters()
+      .then(function(rosters) {
+        $scope.statsCtx.currentRosters = rosters;
+        $scope.statsCtx.currentRosters.map(function(roster) {
+          roster.players.map(function(player) {
+            $scope.statsCtx.currentRosterPLayerList.push(player);
+          });
+        });
+        $scope.statsCtx.mlbHitters = MLBServices.getMlbHitters()
+          .then(function(hitters) {
+            //  $log.debug('eyaaa hitters: ' + hitters);
+            $scope.statsCtx.mlbHitters = JSON.parse(hitters);
+            $scope.statsCtx.currentRosterPLayerList.map(function(player) {
+              $scope.statsCtx.mlbHitters.map(function(mlbPlayer) {
+                if (mlbPlayer.mlbid === player.mlbid) {
+                  $scope.statsCtx.currentNetMlbHitters.push(mlbPlayer);
+                }
+              });
+            });
+          });
+
+        $scope.statsCtx.mlbPitchers = MLBServices.getMlbPitchers()
+          .then(function(pitchers) {
+            // $log.debug('eyaaa hitters: ' + pitchers);
+            $scope.statsCtx.mlbPitchers = JSON.parse(pitchers);
+            $scope.statsCtx.currentRosterPLayerList.map(function(player) {
+              $scope.statsCtx.mlbPitchers.map(function(mlbPlayer) {
+                if (mlbPlayer.mlbid === player.mlbid) {
+                  $scope.statsCtx.currentNetMlbPitchers.push(mlbPlayer);
+                }
+              });
+            });
+          });
+      });
+
+
+  }
+]);
 Stats.controller('RankPosController',[
   '$scope',
   'Dailybatterstat',
