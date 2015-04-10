@@ -8,7 +8,7 @@ Roster.controller('RosterMainController',[
   '$stateParams',
   function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, $stateParams){
     console.log('Roster Main Controller');
-    $scope.currentRosterName = $stateParams.name;
+    $scope.currentRosterName = $stateParams.slug;
     var authUser = localStorage.getItem('homeRoster');
     $scope.canEdit = false;
     $scope.batterTotal = 0;
@@ -242,47 +242,47 @@ Roster.controller('RosterMainController',[
       if (catchersArray.length > 0){
         catchersArray.sort(compareTotals);
         catchersArray[0].counting = true;
-        battersSubTotal += catchersArray[0].total;
+        battersSubTotal += parseFloat(catchersArray[0].total);
       }
       if (firstBArray.length > 0){
         firstBArray.sort(compareTotals);
         firstBArray[0].counting = true;
-        battersSubTotal += firstBArray[0].total;
+        battersSubTotal += parseFloat(firstBArray[0].total);
       }
       if (twoBArray.length > 0){
         twoBArray.sort(compareTotals);
         twoBArray[0].counting = true;
-        battersSubTotal += twoBArray[0].total;
+        battersSubTotal += parseFloat(twoBArray[0].total);
       }
       if (threeBArray.length > 0){
         threeBArray.sort(compareTotals);
         threeBArray[0].counting = true;
-        battersSubTotal += threeBArray[0].total;
+        battersSubTotal += parseFloat(threeBArray[0].total);
       }
       if (ssArray.length > 0){
         ssArray.sort(compareTotals);
         ssArray[0].counting = true;
-        battersSubTotal += ssArray[0].total;
+        battersSubTotal += parseFloat(ssArray[0].total);
       }
       if (lfArray.length > 0){
         lfArray.sort(compareTotals);
         lfArray[0].counting = true;
-        battersSubTotal += lfArray[0].total;
+        battersSubTotal += parseFloat(lfArray[0].total);
       }
       if (cfArray.length > 0){
         cfArray.sort(compareTotals);
         cfArray[0].counting = true;
-        battersSubTotal += cfArray[0].total;
+        battersSubTotal += parseFloat(cfArray[0].total);
       }
       if (rfArray.length > 0){
         rfArray.sort(compareTotals);
         rfArray[0].counting = true;
-        battersSubTotal += rfArray[0].total;
+        battersSubTotal += parseFloat(rfArray[0].total);
       }
       if (dhArray.length > 0){
         dhArray.sort(compareTotals);
         dhArray[0].counting = true;
-        battersSubTotal += dhArray[0].total;
+        battersSubTotal += parseFloat(dhArray[0].total);
       }
       /*
        *
@@ -316,19 +316,19 @@ Roster.controller('RosterMainController',[
       originalArray.sort(compareTotals);
       if (originalArray[0]){
         originalArray[0].counting = true;
-        startersSubTotal += originalArray[0].total;
+        startersSubTotal += parseFloat(originalArray[0].total);
       }
       if (originalArray[1]){
         originalArray[1].counting = true;
-        startersSubTotal += originalArray[1].total;
+        startersSubTotal += parseFloat(originalArray[1].total);
       }
       if (originalArray[2]){
         originalArray[2].counting = true;
-        startersSubTotal += originalArray[2].total;
+        startersSubTotal += parseFloat(originalArray[2].total);
       }
       if (originalArray[3]){
         originalArray[3].counting = true;
-        startersSubTotal += originalArray[3].total;
+        startersSubTotal += parseFloat(originalArray[3].total);
       }
 
       return ({starters:originalArray,subTotal:startersSubTotal});
@@ -367,7 +367,7 @@ Roster.controller('RosterMainController',[
         closerTotal:$scope.closerTotal
       };
 
-      Totals.create(newTotalsRecord);
+     // Totals.create(newTotalsRecord);
       // record the totals
       // date stamp
       // roster

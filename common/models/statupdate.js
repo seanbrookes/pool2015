@@ -189,7 +189,7 @@ if (rosterPlayers && rosterPlayers.length) {
                           if (err) {
                             console.log('sad no stat: ' + JSON.stringify(response));
                           }
-                          console.log('yay added stat [batter w/mlbid: ' + JSON.stringify(response));
+                          // console.log('yay added stat [batter w/mlbid: ' + JSON.stringify(response));
                         });
 
 
@@ -226,7 +226,7 @@ if (rosterPlayers && rosterPlayers.length) {
                       if (err) {
                         console.log('sad no stat: ' + JSON.stringify(response));
                       }
-                      console.log('yay added stat batter no mlbid: ' + JSON.stringify(response));
+                     // console.log('yay added stat batter no mlbid: ' + JSON.stringify(response));
                     });
                 }
 
@@ -251,7 +251,7 @@ if (rosterPlayers && rosterPlayers.length) {
                      *
                      * */
                     if (currRawPitcher.player_id === currentPlayer.mlbid){
-                      console.log('[' + currentPlayer.name + ']');
+                     // console.log('[' + currentPlayer.name + ']');
 
 
                       var pitcherStatPackageObj = {
@@ -288,7 +288,7 @@ if (rosterPlayers && rosterPlayers.length) {
                           if (err) {
                             console.log('sad no stat: ' + JSON.stringify(response));
                           }
-                          console.log('yay added pitcher pitcher w/mlbid: ' + JSON.stringify(response));
+                          // console.log('yay added pitcher pitcher w/mlbid: ' + JSON.stringify(response));
                         });
                       break;
                     }
@@ -319,7 +319,7 @@ if (rosterPlayers && rosterPlayers.length) {
                       if (err) {
                         console.log('sad no stat: ' + JSON.stringify(response));
                       }
-                      console.log('yay added pitcher pitcher no mlbid: ' + JSON.stringify(response));
+                     // console.log('yay added pitcher pitcher no mlbid: ' + JSON.stringify(response));
                     });
 
 
@@ -335,9 +335,9 @@ if (rosterPlayers && rosterPlayers.length) {
 
             }
 
-            console.log('|');
-            console.log('| end save this roster [' + targetRoster.slug + ']');
-            console.log('|');
+            // console.log('|');
+            // console.log('| end save this roster [' + targetRoster.slug + ']');
+            // console.log('|');
 
 }
 
@@ -350,7 +350,7 @@ if (rosterPlayers && rosterPlayers.length) {
           };
           StatUpdate.create({}, statUpdateObj,
             function(response){
-              console.log('yay added stat update');
+              //console.log('yay added stat update');
               return cb(null, JSON.stringify(statUpdateObj));
             },
             function(response){
