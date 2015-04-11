@@ -78,3 +78,209 @@ body {
 .protected-list-container [data-ui-type="row"].protected-row {
   background-color: #D5E4EA;
 }
+/*
+
+Original
+
+*/
+.lnk-command {
+  border: 0;
+  background-color: transparent;
+  font-size: 73%;
+  color: blue;
+  text-decoration: underline;
+}
+.event-command {
+  float: right;
+}
+.tags-list li {
+  display: inline;
+}
+.event-blurb {
+  /*border:1px solid #bbbbbb;*/
+  /*border-radius:1rem;*/
+  background-color: rgba(213, 213, 213, 0.7);
+  font-style: italic;
+  font-size: 110%;
+  color: #666666;
+  padding: .5rem;
+}
+.add-tag-form {
+  /*float:right;*/
+}
+.add-link-toggle {
+  float: right;
+}
+.event-card {
+  border: 1px solid #aaaaaa;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.event-card label {
+  color: #3c510c;
+}
+.master-event-list {
+  list-style: none;
+}
+.master-event-list li {
+  list-style: none;
+}
+.mag-1 {
+  background-color: rgba(255, 25, 25, 0.1);
+}
+.mag-2 {
+  background-color: rgba(255, 25, 25, 0.2);
+}
+.mag-3 {
+  background-color: rgba(255, 25, 25, 0.3);
+}
+.mag-4 {
+  background-color: rgba(255, 25, 25, 0.4);
+}
+.mag-5 {
+  background-color: rgba(255, 25, 25, 0.5);
+}
+.mag-6 {
+  background-color: rgba(255, 25, 25, 0.6);
+}
+.mag-7 {
+  background-color: rgba(255, 25, 25, 0.7);
+}
+.mag-8 {
+  background-color: rgba(255, 25, 25, 0.8);
+}
+.mag-9 {
+  background-color: rgba(255, 25, 25, 0.9);
+}
+.mag-10 {
+  background-color: #ff1919;
+}
+.postGridStyle {
+  border: 1px solid #d4d4d4;
+  width: 700px;
+  height: 3000px;
+}
+.input-player-name {
+  width: 30rem;
+}
+#FormAdminRosterPlayer {
+  display: block;
+}
+.roster-table {
+  width: 56rem;
+}
+.roster-table button {
+  /*display:none;*/
+}
+.draft-table button {
+  display: none;
+}
+.player-list-container {
+  height: 500px;
+  overflow: scroll;
+}
+tr.is-associated {
+  background-color: #85A88D;
+}
+#FormAdminRosterPlayer {
+  /*display:none;*/
+}
+.roster-buttons {
+  /*display:none;*/
+}
+footer {
+  height: 100px;
+}
+.roster-table {
+  font-size: 120%;
+}
+.roster-table caption {
+  text-align: left;
+  letter-spacing: 1rem;
+  font-size: 118%;
+  text-decoration: underline;
+  color: #999999;
+}
+.roster-table td {
+  padding: .1rem;
+  border: 1px solid #dddddd;
+  text-align: center;
+  vertical-align: middle;
+}
+.roster-table td.row-total {
+  font-weight: bold;
+  background-color: #eeeeee;
+  text-align: left;
+  padding-left: 1rem;
+}
+.roster-table td.player-name {
+  color: darkblue;
+  text-align: left;
+}
+h1 span.grand-total {
+  font-weight: 300;
+}
+.admin-total-col {
+  text-align: left;
+  font-weight: bold;
+}
+.admin-date-col {
+  text-align: left;
+}
+#RawBatters td {
+  border-bottom: 1px solid #444444;
+}
+button:disabled {
+  background-color: green;
+}
+.general-nav-container {
+  padding: 40px;
+}
+.general-nav-container ul {
+  max-width: 240px;
+  margin: 0 auto 0 auto;
+}
+.general-nav-container ul li {
+  padding: 9px;
+  background: #eeeeee;
+  border-radius: 4px;
+}
+.general-nav-container ul li a {
+  color: seagreen;
+}
+.general-total-table td {
+  padding: .5rem;
+  border: 1px solid #dddddd;
+}
+.roster-total-summary-list {
+  width: 56rem;
+  padding: 0;
+}
+.roster-total-summary-list li {
+  display: inline;
+}
+.summary-total-container {
+  margin-right: 1rem;
+  margin-left: .4rem;
+  font-size: 110%;
+}
+.summary-total-container span {
+  font-weight: bold;
+}
+.side-nav-box {
+  border: 1px solid #cccccc;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+.roster-total-summary-list-container {
+  border: 1px solid #cccccc;
+  border-radius: .5rem;
+  width: 56rem;
+}
+.total-delta {
+  font-size: 80%;
+  font-weight: 100;
+  color: #E85174;
+}

@@ -108,16 +108,43 @@ Roster.controller('RosterMainController',[
 
     };
 
+    function filterLatest(internalResult) {
+      var filteredOut = new Array();
+      var uniqueMLBIDArray = [];
+
+      for (var i = 0;i < internalResult.length;i++){
+        var tPlayer = internalResult[i];
+
+        var playerMonth = new Date(tPlayer.date).getMonth();
+        var playerDate = new Date(tPlayer.date).getDate();
+        var currMonth = new Date().getMonth();
+        var currDate = new Date().getDate();
+
+        if (parseInt(playerMonth) >= parseInt(currMonth)) {
+          if (parseInt(playerDate) >= parseInt(currDate)) {
+            if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
+              uniqueMLBIDArray.push(tPlayer.mlbid);
+              filteredOut.push(tPlayer);
+            }
+          }
+        }
+      }
+      return filteredOut;
+    }
+
+
     /*
      *
      * Batters
      *
      * */
     $scope.currentRawBatters = Dailybatterstat.query(filter);
-    $scope.currentRawBatters.$promise.
-      then(function (result) {
-        $scope.currentBatters = result;
-        var batterSubtotal = totalAndSortBatters(result);
+    $scope.currentRawBatters
+      .$promise
+      .then(function (result) {
+
+        $scope.currentBatters = filterLatest(result);
+        var batterSubtotal = totalAndSortBatters($scope.currentBatters);
         $scope.batters = batterSubtotal.batters;
         $scope.batterTotal = batterSubtotal.subTotal;
 
@@ -130,9 +157,10 @@ Roster.controller('RosterMainController',[
          *
          * */
         $scope.currentPitchers = Dailypitcherstat.query(filter);
-        $scope.currentPitchers.$promise.
-          then(function (result) {
-            var currentPitchers = result;
+        $scope.currentPitchers
+          .$promise
+          .then(function (result) {
+            var currentPitchers = filterLatest(result);;
             var startersArray = [];
             var closersArray = [];
 
@@ -163,10 +191,10 @@ Roster.controller('RosterMainController',[
 
     function compareTotals(a,b) {
 
-      if (a.total > b.total){
+      if (parseFloat(a.total) > parseFloat(b.total)){
         return -1;
       }
-      if (a.total < b.total){
+      if (parseFloat(a.total) < parseFloat(b.total)){
         return 1;
       }
       return 0;
@@ -344,11 +372,11 @@ Roster.controller('RosterMainController',[
       originalArray.sort(compareTotals);
       if (originalArray[0]){
         originalArray[0].counting = true;
-        closersSubTotal += originalArray[0].total;
+        closersSubTotal += parseFloat(originalArray[0].total);
       }
       if (originalArray[1]){
         originalArray[1].counting = true;
-        closersSubTotal += originalArray[1].total;
+        closersSubTotal += parseFloat(originalArray[1].total);
       }
 
       return ({closers:originalArray,subTotal:closersSubTotal});
