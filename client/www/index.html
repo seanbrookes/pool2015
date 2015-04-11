@@ -11,28 +11,45 @@
   </head>
   <body>
 
-    <div  class="page-header">
-      <div class="branding">
-        <a ui-sref="home"><img src="./images/logo.png" alt="logo" class="logo"></a>
-      </div>
-      <div class="header-main-nav-container">
-        <ul>
-          <li>
-            <a href="/#roster/bashers">Bashers</a>
-          </li>
-          <li>
-            <a href="/#roster/mashers">Mashers</a>
-          </li>
-          <li>
-            <a href="/#roster/rallycaps">Rally Caps</a>
-          </li>
-          <li>
-            <a href="/#roster/stallions">Stallions</a>
-          </li>
-        </ul>
+  <header>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" ui-sref="home">
+            <img src="./images/logo.png" alt="logo" class="logo">
+          </a>
+          <!--<a class="navbar-brand" ui-sref="standings">Standings</a>-->
+          <a class="navbar-brand" href="#roster/bashers">Bashers</a>
+          <a class="navbar-brand" href="#roster/mashers">Mashers</a>
+          <a class="navbar-brand" href="#roster/rallycaps">Rally Caps</a>
+          <a class="navbar-brand" href="#roster/stallions">Stallions</a>
 
+
+        </div>
       </div>
-    </div>
+    </nav>
+  </header>
+    <!--<div  class="page-header">-->
+
+      <!--<div class="header-main-nav-container">-->
+        <!--<ul>-->
+          <!--<li>-->
+            <!--<a href="/#roster/bashers">Bashers</a>-->
+          <!--</li>-->
+          <!--<li>-->
+            <!--<a href="/#roster/mashers">Mashers</a>-->
+          <!--</li>-->
+          <!--<li>-->
+            <!--<a href="/#roster/rallycaps">Rally Caps</a>-->
+          <!--</li>-->
+          <!--<li>-->
+            <!--<a href="/#roster/stallions">Stallions</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+      <!--</div>-->
+    <!--</div>-->
 
     <div ui-view autoscroll="false" class="app-module-container"></div>
 

@@ -194,7 +194,7 @@ Common.directive('grandTotalsSummaryList', [
 
 
 
-              console.log('COMPARITOR: ' + JSON.stringify(totalsComparitorObj));
+              //console.log('COMPARITOR: ' + JSON.stringify(totalsComparitorObj));
 
               $scope.grandTotals = returnArray;
 
