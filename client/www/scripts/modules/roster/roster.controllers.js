@@ -148,8 +148,8 @@ Roster.controller('RosterMainController',[
         $scope.batters = batterSubtotal.batters;
         $scope.batterTotal = batterSubtotal.subTotal;
 
-      }).
-      then(function(response){
+      })
+      .then(function(response){
         /*
          *
          *
@@ -160,11 +160,12 @@ Roster.controller('RosterMainController',[
         $scope.currentPitchers
           .$promise
           .then(function (result) {
-            var currentPitchers = filterLatest(result);;
+            var currentPitchers = filterLatest(result);
             var startersArray = [];
             var closersArray = [];
 
             angular.forEach(currentPitchers, function(value, key){
+                value.total = parseFloat(value.total);
                 if (value.pos === 'SP'){
                   startersArray.push(value);
                 }
@@ -317,17 +318,28 @@ Roster.controller('RosterMainController',[
        * Merge all the arrays
        *
        * */
-      returnArray = $.merge(returnArray,catchersArray);
-      returnArray = $.merge(returnArray,firstBArray);
-      returnArray = $.merge(returnArray,twoBArray);
-      returnArray = $.merge(returnArray,threeBArray);
-      returnArray = $.merge(returnArray,ssArray);
-      returnArray = $.merge(returnArray,lfArray);
-      returnArray = $.merge(returnArray,cfArray);
-      returnArray = $.merge(returnArray,rfArray);
-      returnArray = $.merge(returnArray,dhArray);
+      //returnArray = $.merge(returnArray,catchersArray);
+      //returnArray = $.merge(returnArray,firstBArray);
+      //returnArray = $.merge(returnArray,twoBArray);
+      //returnArray = $.merge(returnArray,threeBArray);
+      //returnArray = $.merge(returnArray,ssArray);
+      //returnArray = $.merge(returnArray,lfArray);
+      //returnArray = $.merge(returnArray,cfArray);
+      //returnArray = $.merge(returnArray,rfArray);
+      //returnArray = $.merge(returnArray,dhArray);
 
-      return ({batters:returnArray,subTotal:battersSubTotal});
+      var positionArray = catchersArray
+        .concat(firstBArray)
+        .concat(twoBArray)
+        .concat(threeBArray)
+        .concat(ssArray)
+        .concat(lfArray)
+        .concat(cfArray)
+        .concat(rfArray)
+        .concat(dhArray);
+
+      return ({batters:positionArray,subTotal:battersSubTotal});
+      //return positionSort()
     };
 
 
