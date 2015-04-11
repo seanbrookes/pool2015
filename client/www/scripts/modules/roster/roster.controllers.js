@@ -5,8 +5,9 @@ Roster.controller('RosterMainController',[
   'Dailybatterstat',
   'Dailypitcherstat',
   'Totals',
+  'StatsServices',
   '$stateParams',
-  function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, $stateParams){
+  function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, StatsServices, $stateParams){
     console.log('Roster Main Controller');
     $scope.currentRosterName = $stateParams.slug;
     var authUser = localStorage.getItem('homeRoster');
@@ -406,6 +407,9 @@ Roster.controller('RosterMainController',[
         starterTotal:$scope.starterTotal,
         closerTotal:$scope.closerTotal
       };
+
+
+      StatsServices.processRosterTotals(newTotalsRecord);
 
      // Totals.create(newTotalsRecord);
       // record the totals
