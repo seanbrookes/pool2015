@@ -113,22 +113,37 @@ Roster.controller('RosterMainController',[
       var filteredOut = new Array();
       var uniqueMLBIDArray = [];
 
+      var refMonth = new Date(internalResult[0].date).getMonth();
+      var refDay = new Date(internalResult[0].date).getDate();
+
       for (var i = 0;i < internalResult.length;i++){
         var tPlayer = internalResult[i];
 
         var playerMonth = new Date(tPlayer.date).getMonth();
+        // day of the month
         var playerDate = new Date(tPlayer.date).getDate();
         var currMonth = new Date().getMonth();
+        // day of the month
         var currDate = new Date().getDate();
 
-        if (parseInt(playerMonth) >= parseInt(currMonth)) {
-          if (parseInt(playerDate) >= parseInt(currDate)) {
-            if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
-              uniqueMLBIDArray.push(tPlayer.mlbid);
-              filteredOut.push(tPlayer);
-            }
+
+        if (playerMonth === refMonth && playerDate === refDay) {
+          if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
+            uniqueMLBIDArray.push(tPlayer.mlbid);
+            filteredOut.push(tPlayer);
           }
         }
+
+
+
+        //if (parseInt(playerMonth) >= parseInt(currMonth)) {
+        //  if (parseInt(playerDate) >= parseInt(currDate)) {
+        //    if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
+        //      uniqueMLBIDArray.push(tPlayer.mlbid);
+        //      filteredOut.push(tPlayer);
+        //    }
+        //  }
+        //}
       }
       return filteredOut;
     }
