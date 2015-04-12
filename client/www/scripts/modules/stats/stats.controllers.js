@@ -83,12 +83,19 @@ Stats.controller('RankPosController',[
     switch($scope.currentFilter){
       case 'RP':
         $scope.positionRanking = Dailypitcherstat.query(filter);
-        $scope.positionRanking.$promise.
-          then(function (result) {
-            $scope.closers = result;
-            $scope.showBatters = false;
-            $scope.showStarters = false;
-            $scope.showClosers = true;
+        $scope.positionRanking
+          .$promise
+          .then(function (result) {
+            if (result.length) {
+              result.map(function(player) {
+                player.total = parseFloat(player.total);
+              });
+              $scope.closers = result;
+              $scope.showBatters = false;
+              $scope.showStarters = false;
+              $scope.showClosers = true;
+
+            }
           }
         );
         break;
@@ -96,6 +103,9 @@ Stats.controller('RankPosController',[
         $scope.positionRanking = Dailypitcherstat.query(filter);
         $scope.positionRanking.$promise.
           then(function (result) {
+            result.map(function(player) {
+              player.total = parseFloat(player.total);
+            });
             $scope.starters = result;
             $scope.showBatters = false;
             $scope.showStarters = true;
@@ -107,6 +117,9 @@ Stats.controller('RankPosController',[
         $scope.positionRanking = Dailybatterstat.query(filter);
         $scope.positionRanking.$promise.
           then(function (result) {
+            result.map(function(player) {
+              player.total = parseFloat(player.total);
+            });
             $scope.batters = result;
             $scope.showBatters = true;
             $scope.showStarters = false;

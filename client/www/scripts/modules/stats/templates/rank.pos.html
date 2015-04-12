@@ -1,8 +1,8 @@
 <div class="container roster-container">
   <div class="row">
     <div class="col-xs-2">
-      <div grand-totals-summary-list></div>
-      <div pos-rank-nav-list></div>
+      <grand-totals-summary-list></grand-totals-summary-list>
+      <pos-rank-nav-list></pos-rank-nav-list>
 
     </div>
     <div class="col-xs-10">
@@ -46,7 +46,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="batter in batters | orderBy:['-total']" class="{{ batter.pos }}">
+        <tr ng-repeat="batter in batters | unique:'mlbid' | orderBy:['-total']" class="{{ batter.pos }}">
           <td>
             <a href="#roster/{{ batter.roster }}">{{ batter.roster }}</a>
           </td>

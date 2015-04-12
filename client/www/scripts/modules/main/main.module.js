@@ -67,6 +67,11 @@ Main.config([
         controller:'GenListController',
         templateUrl:'./scripts/modules/draft/templates/draft.main.html'
       })
+      .state('rank', {
+        url:'/rank/:pos',
+        controller:'RankPosController',
+        templateUrl:'./scripts/modules/stats/templates/rank.pos.html'
+      })
       .state('draft', {
         url:'/draft',
         controller:'DraftMainController',
