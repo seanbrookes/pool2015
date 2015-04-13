@@ -3,8 +3,12 @@ Main.controller('MainController', [
   '$log',
   function($scope, $log){
     $log.debug('Main Controller');
+    $scope.currentRoster = {};
+    $scope.currentFilter = '';
     $scope.bbpCtx = {
-      homeRoster: ''
+      homeRoster: '',
+      currentRoster: '',
+      currentPosFilter: ''
     };
     $scope.isDog = function(){
       if(localStorage.getItem('homeRoster')){

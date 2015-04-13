@@ -1,6 +1,6 @@
 <div class="side-nav-box">
   <table class="nav-totals">
-    <tr ng-repeat="grandTotal in grandTotals | orderBy:['-grandTotal'] | unique:'roster'">
+    <tr class="{{grandTotal.roster}}" ng-repeat="grandTotal in grandTotals | orderBy:['-grandTotal'] | unique:'roster'">
       <td>
         <a href="#roster/{{ grandTotal.roster }}">{{ grandTotal.roster }}</a>
       </td>

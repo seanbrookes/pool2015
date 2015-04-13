@@ -62,6 +62,8 @@ Stats.controller('RankPosController',[
 
 
     $scope.currentFilter = $stateParams.pos;
+    $scope.bbpCtx.currentRoster = '';
+    $scope.bbpCtx.currentPosFilter = $stateParams.pos;
     $scope.showBatters = true;
     $scope.showStarters = false;
     $scope.showClosers = false;

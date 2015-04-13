@@ -10,6 +10,9 @@ Roster.controller('RosterMainController',[
   function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, StatsServices, $stateParams){
     console.log('Roster Main Controller');
     $scope.currentRosterName = $stateParams.slug;
+    $scope.bbpCtx.currentRoster = $stateParams.slug;
+    $scope.bbpCtx.currentPosFilter = '';
+
     var authUser = localStorage.getItem('homeRoster');
     $scope.canEdit = false;
     $scope.batterTotal = 0;

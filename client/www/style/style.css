@@ -5,6 +5,66 @@ body {
   margin: 0;
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
 }
+body.mashers tr.mashers {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.bashers tr.bashers {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.rallycaps tr.rallycaps {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.stallions tr.stallions {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-C li.pos-C {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-1B li.pos-1B {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-2B li.pos-2B {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-3B li.pos-3B {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-SS li.pos-SS {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-LF li.pos-LF {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-CF li.pos-CF {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-RF li.pos-RF {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-DH li.pos-DH {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-SP li.pos-SP {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.pos-RP li.pos-RP {
+  background-color: #444444;
+  color: #ffffff;
+}
 .link-cmd {
   border: 0;
   background: transparent;
