@@ -102,7 +102,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="starter in starters | orderBy:['-total']">
+        <tr ng-repeat="starter in starters | unique:'mlbid' | orderBy:['-total']">
           <td>
             <a href="#roster/{{ starter.roster }}">{{ starter.roster }}</a>
           </td>
@@ -160,7 +160,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="closer in closers | orderBy:['-total']">
+        <tr ng-repeat="closer in closers | unique:'mlbid' | orderBy:['-total']">
           <td>
             <a href="#roster/{{ closer.roster }}">{{ closer.roster }}</a>
           </td>
