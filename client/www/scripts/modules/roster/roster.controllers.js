@@ -5,10 +5,18 @@ Roster.controller('RosterMainController',[
   'Dailybatterstat',
   'Dailypitcherstat',
   'Totals',
+  'StatsServices',
   '$stateParams',
-  function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, $stateParams){
+  '$timeout',
+  function($scope, RosterService, Roster, Dailybatterstat, Dailypitcherstat, Totals, StatsServices, $stateParams, $timeout){
     console.log('Roster Main Controller');
+
     $scope.currentRosterName = $stateParams.slug;
+    $scope.bbpCtx.currentRoster = $stateParams.slug;
+    $scope.bbpCtx.currentPosFilter = '';
+
+
+
     var authUser = localStorage.getItem('homeRoster');
     $scope.canEdit = false;
     $scope.batterTotal = 0;
@@ -108,21 +116,63 @@ Roster.controller('RosterMainController',[
 
     };
 
+    function filterLatest(internalResult) {
+      var filteredOut = new Array();
+      var uniqueMLBIDArray = [];
+
+      var refMonth = new Date(internalResult[0].date).getMonth();
+      var refDay = new Date(internalResult[0].date).getDate();
+
+      for (var i = 0;i < internalResult.length;i++){
+        var tPlayer = internalResult[i];
+
+        var playerMonth = new Date(tPlayer.date).getMonth();
+        // day of the month
+        var playerDate = new Date(tPlayer.date).getDate();
+        var currMonth = new Date().getMonth();
+        // day of the month
+        var currDate = new Date().getDate();
+
+
+        if (playerMonth === refMonth && playerDate === refDay) {
+          if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
+            uniqueMLBIDArray.push(tPlayer.mlbid);
+            filteredOut.push(tPlayer);
+          }
+        }
+
+
+
+        //if (parseInt(playerMonth) >= parseInt(currMonth)) {
+        //  if (parseInt(playerDate) >= parseInt(currDate)) {
+        //    if (uniqueMLBIDArray.indexOf(tPlayer.mlbid) === -1){
+        //      uniqueMLBIDArray.push(tPlayer.mlbid);
+        //      filteredOut.push(tPlayer);
+        //    }
+        //  }
+        //}
+      }
+      return filteredOut;
+    }
+
+
     /*
      *
      * Batters
      *
      * */
     $scope.currentRawBatters = Dailybatterstat.query(filter);
-    $scope.currentRawBatters.$promise.
-      then(function (result) {
-        $scope.currentBatters = result;
-        var batterSubtotal = totalAndSortBatters(result);
+    $scope.currentRawBatters
+      .$promise
+      .then(function (result) {
+
+        $scope.currentBatters = filterLatest(result);
+        var batterSubtotal = totalAndSortBatters($scope.currentBatters);
         $scope.batters = batterSubtotal.batters;
         $scope.batterTotal = batterSubtotal.subTotal;
 
-      }).
-      then(function(response){
+      })
+      .then(function(response){
         /*
          *
          *
@@ -130,13 +180,15 @@ Roster.controller('RosterMainController',[
          *
          * */
         $scope.currentPitchers = Dailypitcherstat.query(filter);
-        $scope.currentPitchers.$promise.
-          then(function (result) {
-            var currentPitchers = result;
+        $scope.currentPitchers
+          .$promise
+          .then(function (result) {
+            var currentPitchers = filterLatest(result);
             var startersArray = [];
             var closersArray = [];
 
             angular.forEach(currentPitchers, function(value, key){
+                value.total = parseFloat(value.total);
                 if (value.pos === 'SP'){
                   startersArray.push(value);
                 }
@@ -163,10 +215,10 @@ Roster.controller('RosterMainController',[
 
     function compareTotals(a,b) {
 
-      if (a.total > b.total){
+      if (parseFloat(a.total) > parseFloat(b.total)){
         return -1;
       }
-      if (a.total < b.total){
+      if (parseFloat(a.total) < parseFloat(b.total)){
         return 1;
       }
       return 0;
@@ -289,17 +341,28 @@ Roster.controller('RosterMainController',[
        * Merge all the arrays
        *
        * */
-      returnArray = $.merge(returnArray,catchersArray);
-      returnArray = $.merge(returnArray,firstBArray);
-      returnArray = $.merge(returnArray,twoBArray);
-      returnArray = $.merge(returnArray,threeBArray);
-      returnArray = $.merge(returnArray,ssArray);
-      returnArray = $.merge(returnArray,lfArray);
-      returnArray = $.merge(returnArray,cfArray);
-      returnArray = $.merge(returnArray,rfArray);
-      returnArray = $.merge(returnArray,dhArray);
+      //returnArray = $.merge(returnArray,catchersArray);
+      //returnArray = $.merge(returnArray,firstBArray);
+      //returnArray = $.merge(returnArray,twoBArray);
+      //returnArray = $.merge(returnArray,threeBArray);
+      //returnArray = $.merge(returnArray,ssArray);
+      //returnArray = $.merge(returnArray,lfArray);
+      //returnArray = $.merge(returnArray,cfArray);
+      //returnArray = $.merge(returnArray,rfArray);
+      //returnArray = $.merge(returnArray,dhArray);
 
-      return ({batters:returnArray,subTotal:battersSubTotal});
+      var positionArray = catchersArray
+        .concat(firstBArray)
+        .concat(twoBArray)
+        .concat(threeBArray)
+        .concat(ssArray)
+        .concat(lfArray)
+        .concat(cfArray)
+        .concat(rfArray)
+        .concat(dhArray);
+
+      return ({batters:positionArray,subTotal:battersSubTotal});
+      //return positionSort()
     };
 
 
@@ -344,11 +407,11 @@ Roster.controller('RosterMainController',[
       originalArray.sort(compareTotals);
       if (originalArray[0]){
         originalArray[0].counting = true;
-        closersSubTotal += originalArray[0].total;
+        closersSubTotal += parseFloat(originalArray[0].total);
       }
       if (originalArray[1]){
         originalArray[1].counting = true;
-        closersSubTotal += originalArray[1].total;
+        closersSubTotal += parseFloat(originalArray[1].total);
       }
 
       return ({closers:originalArray,subTotal:closersSubTotal});
@@ -366,6 +429,9 @@ Roster.controller('RosterMainController',[
         starterTotal:$scope.starterTotal,
         closerTotal:$scope.closerTotal
       };
+
+
+      StatsServices.processRosterTotals(newTotalsRecord);
 
      // Totals.create(newTotalsRecord);
       // record the totals
