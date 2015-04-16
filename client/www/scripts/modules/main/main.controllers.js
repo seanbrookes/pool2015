@@ -5,11 +5,20 @@ Main.controller('MainController', [
     $log.debug('Main Controller');
     $scope.currentRoster = {};
     $scope.currentFilter = '';
-    $scope.bbpCtx = {
-      homeRoster: '',
-      currentRoster: '',
-      currentPosFilter: ''
-    };
+    $scope.bbpCtx = {};
+    $scope.currentRosterSlug = 'mashers';
+
+    function init() {
+
+        $scope.bbpCtx = {
+          homeRoster: '',
+          currentRoster: '',
+          currentPosFilter: ''
+        };
+
+
+    }
+
     $scope.isDog = function(){
       if(localStorage.getItem('homeRoster')){
         if (localStorage.getItem('homeRoster') === 'dog'){
@@ -23,4 +32,5 @@ Main.controller('MainController', [
     if (window.localStorage && window.localStorage.getItem('homeRoster')) {
       $scope.bbpCtx.homeRoster = window.localStorage.getItem('homeRoster');
     }
+    init();
 }]);

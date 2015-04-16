@@ -211,6 +211,30 @@ Common.directive('grandTotalsSummaryList', [
     }
   }
 ]);
+Common.directive('bbpAppHeader', [
+
+  function() {
+    return {
+      restrict: 'E',
+      templateUrl: './scripts/modules/common/templates/app.header.html',
+      replace: true,
+      controller: [
+        '$scope',
+        '$stateParams',
+        function($scope, $stateParams) {
+          $scope.headerCtx = {};
+          $scope.headerCtx.currentRoster = $stateParams.slug;
+      }],
+      link: function(scope, el, attrs) {
+
+
+        scope.$watch('bbpCtx.currentRoster', function(newRoster, oldRoster) {
+          scope.headerCtx.currentRoster = newRoster;
+        }, true);
+      }
+    }
+  }
+]);
 Common.directive('posRankNavList', [
   function() {
     return {
