@@ -1,3 +1,164 @@
+Common.directive('bbpTotalsChart', [
+  function() {
+    return  {
+      restrict: 'E',
+      template: '<svg id="visualisation" width="1000" height="500"></svg>',
+      controller: [
+        '$scope',
+        '$log',
+        'Totals',
+        function($scope, $log, Totals) {
+          $scope.chartTotals = Totals.query({})
+            .$promise
+            .then(function(totalsCollection) {
+              $log.debug('totalsCollection');
+              /*
+              *
+              * each roster:
+              * - date
+              * - grandTotal
+              *
+              * Date
+              * Roster
+              * grandTotal
+              *
+              * */
+              $scope.chartTotals = {
+                bashersTotals: [],
+                mashersTotals: [],
+                rallyCapsTotals: [],
+                stallionsTotals: []
+              };
+            //  var parseDate = d3.time.format("%Y%m%d").parse;
+            //  function getDate(d) {
+            //    return new Date(d.jsonDate);
+            //  }
+              totalsCollection.map(function(totalItem) {
+                switch(totalItem.roster) {
+                  case 'bashers':
+                    $scope.chartTotals.bashersTotals.push({
+                      date:new Date(totalItem.date),
+                      grandTotal:totalItem.grandTotal,
+                      starterTotal:totalItem.starterTotal,
+                      closerTotal:totalItem.closerTotal,
+                      batterTotal:totalItem.batterTotal
+                    });
+
+                    break;
+
+                  case 'mashers':
+                    $scope.chartTotals.mashersTotals.push({
+                      date:new Date(totalItem.date),
+                      grandTotal:totalItem.grandTotal,
+                      starterTotal:totalItem.starterTotal,
+                      closerTotal:totalItem.closerTotal,
+                      batterTotal:totalItem.batterTotal
+                    });
+
+                    break;
+
+                  case 'rallycaps':
+                    $scope.chartTotals.rallyCapsTotals.push({
+                      date:new Date(totalItem.date),
+                      grandTotal:totalItem.grandTotal,
+                      starterTotal:totalItem.starterTotal,
+                      closerTotal:totalItem.closerTotal,
+                      batterTotal:totalItem.batterTotal
+                    });
+
+                    break;
+
+                  case 'stallions':
+                    $scope.chartTotals.stallionsTotals.push({
+                      date:new Date(totalItem.date),
+                      grandTotal:totalItem.grandTotal,
+                      starterTotal:totalItem.starterTotal,
+                      closerTotal:totalItem.closerTotal,
+                      batterTotal:totalItem.batterTotal
+                    });
+
+                    break;
+
+                  default:
+
+                }
+              });
+
+
+              var dateRange1 = $scope.chartTotals.stallionsTotals[0].date;
+              var dateRange2 = $scope.chartTotals.stallionsTotals[$scope.chartTotals.stallionsTotals.length - 1].date;
+              // create and render the chart
+              var vis = d3.select("#visualisation"),
+                WIDTH = 1000,
+                HEIGHT = 500,
+                MARGINS = {
+                  top: 20,
+                  right: 20,
+                  bottom: 20,
+                  left: 50
+                },
+                xScale = d3.time.scale()
+                  .range([MARGINS.left, WIDTH - MARGINS.right])
+                  .domain([dateRange1, dateRange2]),
+                yScale = d3.scale.linear()
+                  .range([HEIGHT - MARGINS.top, MARGINS.bottom])
+                  .domain([0, $scope.chartTotals.stallionsTotals[$scope.chartTotals.stallionsTotals.length - 1].grandTotal]),
+                xAxis = d3.svg.axis()
+                  .scale(xScale),
+                yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient("left");
+
+              vis.append("svg:g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+                .call(xAxis);
+              vis.append("svg:g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                .style({ 'stroke': '#444444', 'fill': 'none', 'stroke-width': '1px'})
+                .call(yAxis);
+              var lineGen = d3.svg.line()
+                .x(function(d) {
+                  return xScale(d.date);
+                })
+                .y(function(d) {
+                  return yScale(d.grandTotal);
+                })
+                .interpolate("basis");
+              vis.append('svg:path')
+                .attr('d', lineGen($scope.chartTotals.mashersTotals))
+                .attr('stroke', 'green')
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+              vis.append('svg:path')
+                .attr('d', lineGen($scope.chartTotals.bashersTotals))
+                .attr('stroke', 'blue')
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+              vis.append('svg:path')
+                .attr('d', lineGen($scope.chartTotals.rallyCapsTotals))
+                .attr('stroke', 'red')
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+              vis.append('svg:path')
+                .attr('d', lineGen($scope.chartTotals.stallionsTotals))
+                .attr('stroke', 'pink')
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+
+
+
+
+             });
+        }
+      ],
+      link: function(scope, el, attrs) {
+
+      }
+    }
+  }
+]);
 Common.directive('grandTotalsSummaryList', [
   'Totals',
   function(Totals){
