@@ -59,30 +59,57 @@ Roster.controller('RosterMainController',[
         switch(player.pos) {
 
           case 'C':
+            if (cArray.length === 0){
+              player.class = 'counting';
+            }
             cArray.push(player);
             break;
           case '1B':
+            if (oneBArray.length === 0){
+              player.class = 'counting';
+            }
             oneBArray.push(player);
             break;
           case '2B':
+            if (twoBArray.length === 0){
+              player.class = 'counting';
+            }
             twoBArray.push(player);
             break;
           case '3B':
+            if (threeBArray.length === 0){
+              player.class = 'counting';
+            }
             threeBArray.push(player);
             break;
           case 'SS':
+            if (ssArray.length === 0){
+              player.class = 'counting';
+            }
             ssArray.push(player);
             break;
           case 'LF':
+            if (lfArray.length === 0){
+              player.class = 'counting';
+            }
             lfArray.push(player);
             break;
           case 'CF':
+            if (cfArray.length === 0){
+              player.class = 'counting';
+            }
             cfArray.push(player);
             break;
           case 'RF':
+            if (rfArray.length === 0){
+              player.class = 'counting';
+            }
             rfArray.push(player);
             break;
           case 'DH':
+            if (dhArray.length === 0){
+              player.class = 'counting';
+            }
             dhArray.push(player);
             break;
           case 'SP':

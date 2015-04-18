@@ -144,58 +144,72 @@ div.pos-RP li.pos-RP a {
 .main-content-container h3 {
   margin-top: 0;
 }
-.side-nav-container .nav-pitcher-rank-list {
-  margin-bottom: 12rem;
+.x.axis path {
+  display: none;
 }
-.side-nav-container .nav-rank-title {
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.side-nav-bar {
+  background-color: #08592b;
+  padding: 0;
+  margin: 0;
+}
+.side-nav-bar hr {
+  margin-bottom: 0;
+}
+.side-nav-bar .other-nav-container ul {
+  list-style: none;
+}
+.side-nav-bar .other-nav-container ul li a {
+  color: #ffff47;
+}
+.side-nav-bar .side-nav-container .nav-rank-title {
   color: #eeeeee;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
   padding-left: 1rem;
   margin-bottom: 1rem;
 }
-.side-nav-container .nav-rank-list {
+.side-nav-bar .side-nav-container .nav-rank-list {
   list-style: none;
 }
-.side-nav-container .nav-rank-list a {
+.side-nav-bar .side-nav-container .nav-rank-list a {
   display: inline-block;
   margin-left: 1rem;
   color: #ffffff;
   letter-spacing: .1rem;
 }
-.side-nav-container .nav-rank-list a:active {
+.side-nav-bar .side-nav-container .nav-rank-list a:active {
   color: #000000;
 }
-.side-nav-container .total-delta {
+.side-nav-bar .side-nav-container .total-delta {
   color: rgba(200, 200, 200, 0.2);
 }
-.side-nav-container .total-value {
+.side-nav-bar .side-nav-container .total-value {
   color: #eeeeee;
 }
-.side-nav-container .nav-totals {
+.side-nav-bar .side-nav-container .nav-totals {
   margin-top: 1.3rem;
   margin-bottom: 1.3rem;
   border-color: transparent;
 }
-.side-nav-container .nav-totals tr {
+.side-nav-bar .side-nav-container .nav-totals tr {
   border-color: transparent;
   background-color: rgba(200, 200, 200, 0.2);
   border-bottom: 1px solid #444444;
 }
-.side-nav-container .nav-totals a {
+.side-nav-bar .side-nav-container .nav-totals a {
   display: inline-block;
   margin-left: 1rem;
   padding: .5rem;
   color: #ffffff;
   letter-spacing: .15rem;
 }
-.side-nav-container .nav-totals a:active {
+.side-nav-bar .side-nav-container .nav-totals a:active {
   color: #000000;
-}
-.side-nav-bar {
-  background-color: seagreen;
-  padding: 0;
-  margin: 0;
 }
 .navbar-nav > li > a {
   line-height: 42px;
@@ -278,7 +292,7 @@ Original
   border: 0;
   background-color: transparent;
   font-size: 73%;
-  color: blue;
+  color: #2b0859;
   text-decoration: underline;
 }
 .event-command {
@@ -431,6 +445,11 @@ button:disabled {
 .general-nav-container ul {
   list-style: none;
 }
+.roster-table .counting {
+  background-color: #eeeeee;
+  font-weight: bold;
+  color: #2b0859;
+}
 .general-nav-container ul {
   max-width: 240px;
   margin: 0 auto 0 auto;
@@ -441,7 +460,7 @@ button:disabled {
   border-radius: 4px;
 }
 .general-nav-container ul li a {
-  color: seagreen;
+  color: #507921;
 }
 .general-total-table td {
   padding: .5rem;
