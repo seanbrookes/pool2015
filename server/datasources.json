@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "bbpool2015": {
-    "url": "",
+    "url": "mongodb://heroku_app35247748:p2afbraucsa5v56942cu8tq8uj@ds033797.mongolab.com:33797/heroku_app35247748",
     "database": "bbpool2015",
     "name": "bbpool2015",
     "connector": "mongodb"
