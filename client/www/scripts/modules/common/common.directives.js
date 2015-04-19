@@ -143,7 +143,7 @@ Common.directive('bbpTotalsChart', [
                 .attr('fill', 'none');
               vis.append('svg:path')
                 .attr('d', lineGen($scope.chartTotals.stallionsTotals))
-                .attr('stroke', 'pink')
+                .attr('stroke', 'grey')
                 .attr('stroke-width', 2)
                 .attr('fill', 'none');
 
