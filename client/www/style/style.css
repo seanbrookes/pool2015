@@ -36,106 +36,106 @@ nav.stallions a.stallions {
   background-color: #ffffff;
   color: #444444;
 }
-div.mashers tr.mashers {
+div.mashers .side-nav-bar tr.mashers {
   background-color: #ffffff;
 }
-div.mashers tr.mashers a {
+div.mashers .side-nav-bar tr.mashers a {
   color: #444444;
 }
-div.mashers tr.mashers .total-value {
+div.mashers .side-nav-bar tr.mashers .total-value {
   color: #444444;
 }
-div.bashers tr.bashers {
+div.bashers .side-nav-bar tr.bashers {
   background-color: #ffffff;
 }
-div.bashers tr.bashers a {
+div.bashers .side-nav-bar tr.bashers a {
   color: #444444;
 }
-div.bashers tr.bashers .total-value {
+div.bashers .side-nav-bar tr.bashers .total-value {
   color: #444444;
 }
-div.rallycaps tr.rallycaps {
+div.rallycaps .side-nav-bar tr.rallycaps {
   background-color: #ffffff;
 }
-div.rallycaps tr.rallycaps a {
+div.rallycaps .side-nav-bar tr.rallycaps a {
   color: #444444;
 }
-div.rallycaps tr.rallycaps .total-value {
+div.rallycaps .side-nav-bar tr.rallycaps .total-value {
   color: #444444;
 }
-div.stallions tr.stallions {
+div.stallions .side-nav-bar tr.stallions {
   background-color: #ffffff;
 }
-div.stallions tr.stallions a {
+div.stallions .side-nav-bar tr.stallions a {
   color: #444444;
 }
-div.stallions tr.stallions .total-value {
+div.stallions .side-nav-bar tr.stallions .total-value {
   color: #444444;
 }
-div.pos-C li.pos-C {
+div.pos-C .nav-rank-list li.pos-C {
   background-color: #ffffff;
 }
-div.pos-C li.pos-C a {
+div.pos-C .nav-rank-list li.pos-C a {
   color: #444444;
 }
-div.pos-1B li.pos-1B {
+div.pos-1B .nav-rank-list li.pos-1B {
   background-color: #ffffff;
 }
-div.pos-1B li.pos-1B a {
+div.pos-1B .nav-rank-list li.pos-1B a {
   color: #444444;
 }
-div.pos-2B li.pos-2B {
+div.pos-2B .nav-rank-list li.pos-2B {
   background-color: #ffffff;
 }
-div.pos-2B li.pos-2B a {
+div.pos-2B .nav-rank-list li.pos-2B a {
   color: #444444;
 }
-div.pos-3B li.pos-3B {
+div.pos-3B .nav-rank-list li.pos-3B {
   background-color: #ffffff;
 }
-div.pos-3B li.pos-3B a {
+div.pos-3B .nav-rank-list li.pos-3B a {
   color: #444444;
 }
-div.pos-SS li.pos-SS {
+div.pos-SS .nav-rank-list li.pos-SS {
   background-color: #ffffff;
 }
-div.pos-SS li.pos-SS a {
+div.pos-SS .nav-rank-list li.pos-SS a {
   color: #444444;
 }
-div.pos-LF li.pos-LF {
+div.pos-LF .nav-rank-list li.pos-LF {
   background-color: #ffffff;
 }
-div.pos-LF li.pos-LF a {
+div.pos-LF .nav-rank-list li.pos-LF a {
   color: #444444;
 }
-div.pos-CF li.pos-CF {
+div.pos-CF .nav-rank-list li.pos-CF {
   background-color: #ffffff;
 }
-div.pos-CF li.pos-CF a {
+div.pos-CF .nav-rank-list li.pos-CF a {
   color: #444444;
 }
-div.pos-RF li.pos-RF {
+div.pos-RF .nav-rank-list li.pos-RF {
   background-color: #ffffff;
 }
-div.pos-RF li.pos-RF a {
+div.pos-RF .nav-rank-list li.pos-RF a {
   color: #444444;
 }
-div.pos-DH li.pos-DH {
+div.pos-DH .nav-rank-list li.pos-DH {
   background-color: #ffffff;
 }
-div.pos-DH li.pos-DH a {
+div.pos-DH .nav-rank-list li.pos-DH a {
   color: #444444;
 }
-div.pos-SP li.pos-SP {
+div.pos-SP .nav-rank-list li.pos-SP {
   background-color: #ffffff;
 }
-div.pos-SP li.pos-SP a {
+div.pos-SP .nav-rank-list li.pos-SP a {
   color: #444444;
 }
-div.pos-RP li.pos-RP {
+div.pos-RP .nav-rank-list li.pos-RP {
   background-color: #ffffff;
 }
-div.pos-RP li.pos-RP a {
+div.pos-RP .nav-rank-list li.pos-RP a {
   color: #444444;
 }
 .roster-container h2 {
