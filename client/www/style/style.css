@@ -156,6 +156,7 @@ div.pos-RP .nav-rank-list li.pos-RP a {
   background-color: #08592b;
   padding: 0;
   margin: 0;
+  min-width: 187px;
 }
 .side-nav-bar hr {
   margin-bottom: 0;
@@ -186,7 +187,9 @@ div.pos-RP .nav-rank-list li.pos-RP a {
   color: #000000;
 }
 .side-nav-bar .side-nav-container .total-delta {
-  color: rgba(200, 200, 200, 0.2);
+  font-size: 80%;
+  font-weight: 100;
+  color: #ff9944;
 }
 .side-nav-bar .side-nav-container .total-value {
   color: #eeeeee;
@@ -491,9 +494,4 @@ button:disabled {
   border: 1px solid #cccccc;
   border-radius: .5rem;
   width: 56rem;
-}
-.total-delta {
-  font-size: 80%;
-  font-weight: 100;
-  color: #E85174;
 }

@@ -325,11 +325,22 @@ Common.directive('grandTotalsSummaryList', [
                   previousDate = moment(latestDate).subtract('days',1).format('YYYY-MM-DD');
                   console.log('dates: ' + latestDate + ':' + moment(previousDate).format('YYYY-MM-DD'));
                 }
+                var bBashersDeltaCalculated = false;
+                var bBashersTotalCalculated = false;
+                var bMashersDeltaCalculated = false;
+                var bMashersTotalCalculated = false;
+                var bRallycapsDeltaCalculated = false;
+                var bRallycapsTotalCalculated = false;
+                var bStallionsDeltaCalculated = false;
+                var bStallionsTotalCalculated = false;
+
                 switch(currTotalRecord.roster){
 
                   case 'bashers':
                     if (currTotalRecord.date === latestDate){
-                      if (!totalsComparitorObj.bashers.latest.date){
+                      if (!totalsComparitorObj.bashers.latest.date) {
+                        bBashersTotalCalculated = true;
+
                         totalsComparitorObj.bashers.latest.date = currTotalRecord.date;
                         totalsComparitorObj.bashers.latest.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.bashers.latest.hitterTotal = currTotalRecord.hitterTotal;
@@ -337,19 +348,23 @@ Common.directive('grandTotalsSummaryList', [
                         totalsComparitorObj.bashers.latest.closerTotal = currTotalRecord.closerTotal;
                       }
                     }
-                    if (currTotalRecord.date === previousDate){
+                    if (!bBashersDeltaCalculated && (currTotalRecord.date !== latestDate)){
                       if (!totalsComparitorObj.bashers.previous.date){
+                        bBashersDeltaCalculated = true;
                         totalsComparitorObj.bashers.previous.date = currTotalRecord.date;
                         totalsComparitorObj.bashers.previous.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.bashers.previous.hitterTotal = currTotalRecord.hitterTotal;
                         totalsComparitorObj.bashers.previous.starterTotal = currTotalRecord.starterTotal;
                         totalsComparitorObj.bashers.previous.closerTotal = currTotalRecord.closerTotal;
+
+
                       }
                     }
                     break;
                   case 'mashers':
                     if (currTotalRecord.date === latestDate){
                       if (!totalsComparitorObj.mashers.latest.date){
+                        bMashersTotalCalculated = true;
                         totalsComparitorObj.mashers.latest.date = currTotalRecord.date;
                         totalsComparitorObj.mashers.latest.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.mashers.latest.hitterTotal = currTotalRecord.hitterTotal;
@@ -357,8 +372,9 @@ Common.directive('grandTotalsSummaryList', [
                         totalsComparitorObj.mashers.latest.closerTotal = currTotalRecord.closerTotal;
                       }
                     }
-                    if (currTotalRecord.date === previousDate){
+                    if (!bMashersDeltaCalculated && (currTotalRecord.date !== latestDate)){
                       if (!totalsComparitorObj.mashers.previous.date){
+                        bMashersDeltaCalculated = true;
                         totalsComparitorObj.mashers.previous.date = currTotalRecord.date;
                         totalsComparitorObj.mashers.previous.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.mashers.previous.hitterTotal = currTotalRecord.hitterTotal;
@@ -370,6 +386,7 @@ Common.directive('grandTotalsSummaryList', [
                   case 'rallycaps':
                     if (currTotalRecord.date === latestDate){
                       if (!totalsComparitorObj.rallycaps.latest.date){
+                        bRallycapsTotalCalculated = true;
                         totalsComparitorObj.rallycaps.latest.date = currTotalRecord.date;
                         totalsComparitorObj.rallycaps.latest.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.rallycaps.latest.hitterTotal = currTotalRecord.hitterTotal;
@@ -377,8 +394,9 @@ Common.directive('grandTotalsSummaryList', [
                         totalsComparitorObj.rallycaps.latest.closerTotal = currTotalRecord.closerTotal;
                       }
                     }
-                    if (currTotalRecord.date === previousDate){
+                    if (!bRallycapsDeltaCalculated && (currTotalRecord.date !== latestDate)){
                       if (!totalsComparitorObj.rallycaps.previous.date){
+                        bRallycapsDeltaCalculated = true;
                         totalsComparitorObj.rallycaps.previous.date = currTotalRecord.date;
                         totalsComparitorObj.rallycaps.previous.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.rallycaps.previous.hitterTotal = currTotalRecord.hitterTotal;
@@ -390,6 +408,7 @@ Common.directive('grandTotalsSummaryList', [
                   case 'stallions':
                     if (currTotalRecord.date === latestDate){
                       if (!totalsComparitorObj.stallions.latest.date){
+                        bStallionsTotalCalculated = true;
                         totalsComparitorObj.stallions.latest.date = currTotalRecord.date;
                         totalsComparitorObj.stallions.latest.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.stallions.latest.hitterTotal = currTotalRecord.hitterTotal;
@@ -397,8 +416,9 @@ Common.directive('grandTotalsSummaryList', [
                         totalsComparitorObj.stallions.latest.closerTotal = currTotalRecord.closerTotal;
                       }
                     }
-                    if (currTotalRecord.date === previousDate){
+                    if (!bStallionsDeltaCalculated && (currTotalRecord.date !== latestDate)){
                       if (!totalsComparitorObj.stallions.previous.date){
+                        bStallionsDeltaCalculated = true;
                         totalsComparitorObj.stallions.previous.date = currTotalRecord.date;
                         totalsComparitorObj.stallions.previous.grandTotal = currTotalRecord.grandTotal;
                         totalsComparitorObj.stallions.previous.hitterTotal = currTotalRecord.hitterTotal;
@@ -422,7 +442,7 @@ Common.directive('grandTotalsSummaryList', [
                 currTotalRecord = beginArray[k];
 
 
-                currTotalRecord.grandTotalDelta = getGrandTotalDelta(currTotalRecord.roster,totalsComparitorObj);
+                currTotalRecord.grandTotalDelta = parseFloat(getGrandTotalDelta(currTotalRecord.roster,totalsComparitorObj)).toFixed(2);
 
                 returnArray.push(currTotalRecord);
 
@@ -438,10 +458,10 @@ Common.directive('grandTotalsSummaryList', [
             }
           );
           var getGrandTotalDelta = function(roster, compObj){
-            return 0;
-            //if (compObj[roster].previous.grandTotal !== 0){
-            //  return (compObj[roster].latest.grandTotal - compObj[roster].previous.grandTotal);
-            //}
+//            return 0;
+            if (compObj[roster].previous.grandTotal !== 0){
+              return (compObj[roster].latest.grandTotal - compObj[roster].previous.grandTotal);
+            }
           }
         }
       ]
