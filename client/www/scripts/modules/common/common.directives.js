@@ -118,6 +118,10 @@ Common.directive('bbpTotalsChart', [
                 .attr("transform", "translate(" + (MARGINS.left) + ",0)")
                 .style({ 'stroke': '#444444', 'fill': 'none', 'stroke-width': '1px'})
                 .call(yAxis);
+
+
+
+
               var lineGen = d3.svg.line()
                 .x(function(d) {
                   return xScale(d.date);
@@ -148,8 +152,80 @@ Common.directive('bbpTotalsChart', [
                 .attr('fill', 'none');
 
 
-
-
+              var pl = vis.append('g')
+                .attr('class', 'legend');
+              // BASHERS
+              pl.append('rect')
+                .attr('x',  WIDTH - 200)
+                .attr('y', 200)
+                .attr('width', 20)
+                .attr('height', 20)
+                .style('fill', function(d) {
+                  return 'blue';
+                });
+              pl.append('text')
+                .attr('x', WIDTH - 170)
+                .attr('y', HEIGHT - 285)
+                .attr('width', 200)
+                .attr('height', 20)
+                .text(function(d){ return 'Bashers'; })
+                .style('fill', function(d) {
+                  return 'orange';
+                });
+              // MASHERS
+              pl.append('rect')
+                .attr('x',  WIDTH - 200)
+                .attr('y', 230)
+                .attr('width', 20)
+                .attr('height', 20)
+                .style('fill', function(d) {
+                  return 'green';
+                });
+              pl.append('text')
+                .attr('x', WIDTH - 170)
+                .attr('y', HEIGHT - 255)
+                .attr('width', 200)
+                .attr('height', 20)
+                .text(function(d){ return 'Mashers'; })
+                .style('fill', function(d) {
+                  return 'orange';
+                });
+              // RALLY CAPS
+              pl.append('rect')
+                .attr('x',  WIDTH - 200)
+                .attr('y', 260)
+                .attr('width', 20)
+                .attr('height', 20)
+                .style('fill', function(d) {
+                  return 'red';
+                });
+              pl.append('text')
+                .attr('x', WIDTH - 170)
+                .attr('y', HEIGHT - 225)
+                .attr('width', 200)
+                .attr('height', 20)
+                .text(function(d){ return 'Rally Caps'; })
+                .style('fill', function(d) {
+                  return 'orange';
+                });
+              // STALLIONS
+              pl.append('rect')
+                .attr('x',  WIDTH - 200)
+                .attr('y', 290)
+                .attr('width', 20)
+                .attr('height', 20)
+                .style('fill', function(d) {
+                  return 'grey';
+                });
+              pl.append('text')
+                .attr('x', WIDTH - 170)
+                .attr('y', HEIGHT - 195)
+                .attr('width', 200)
+                .attr('height', 20)
+                .text(function(d){ return 'Stallions'; })
+                .style('fill', function(d) {
+                  return 'orange';
+                });
              });
         }
       ],
