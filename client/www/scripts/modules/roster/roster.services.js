@@ -18,7 +18,7 @@ Roster.service('RosterService',[
         })
         .catch(function(error) {
           $log.warn('bad get all rosters: ' + JSON.stringify(error));
-        })
+        });
     };
     svc.getRoster = function(slug) {
       var filter = {

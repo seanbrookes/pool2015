@@ -115,50 +115,157 @@ Admin.controller('RosterAdminController',[
     $scope.editThisPlayer = function(player){
       $scope.editPlayer = player;
     };
-    $scope.saveEditPlayer = function(player){
-      var editConfirmed = false;
-
-      if (player.mlbid){
-        angular.forEach($scope.currentRoster.players, function(value, key){
-          if (value.mlbid === player.mlbid){
-            console.log('matched player');
-            $scope.currentRoster.players[key] = player;
-            editConfirmed = true;
+    $scope.deleteRosterPlayer = function(player) {
+      if (confirm('delete this player?')) {
+        for (var i = 0; i < $scope.currentRoster.players.length;i++) {
+          var curPlayer = $scope.currentRoster.players[i];
+          if (player.mlbid == curPlayer.mlbid) {
+            $scope.currentRoster.players.splice(i,1);
+            break;
           }
-        });
-      }
-      else {
-        $scope.currentRoster.players.push(player);
-        editConfirmed = true;
-      }
 
-
-      if (editConfirmed){
-        var rosterObj = $scope.currentRoster;
-        //delete rosterObj._id;
-        Roster.upsert(rosterObj,
-          function(response){
-            console.log('good update roster');
-            var filter = {
-              'filter[where][slug]':$scope.currentRosterName
-            };
-            $scope.currentRoster = Roster.query(filter);
-            $scope.currentRoster.$promise.then(function (result) {
-              $scope.currentRoster = result[0];
-
-              $scope.players = $scope.currentRoster.players;
-              $scope.player = {
-                draftStatus:'roster',
-                status:'regular',
-                posType:'hitter'
-              };
-            });
+        }
+        Roster.upsert($scope.currentRoster,
+          function(response) {
+            console.log('good update current roster');
           },
-          function(response){
-            console.log('bad update roster');
+          function(error) {
+            console.log('bad update target roster: ' + JSON.stringify(error));
           }
         );
       }
+
+    };
+    $scope.saveEditPlayer = function(player){
+      var editConfirmed = false;
+
+      // is it new
+      if (!$scope.currentRoster.slug) {
+        var filter = {
+          'filter[where][slug]':$scope.currentRosterName
+        };
+        $scope.currentRoster = Roster.query(filter);
+        $scope.currentRoster.$promise.
+          then(function (result) {
+            $scope.cRoster = result[0];
+            $scope.cRoster.players.push(player);
+
+            // save target roster
+            Roster.upsert($scope.cRoster,
+              function(response) {
+                console.log('good update current roster');
+              },
+              function(error) {
+                console.log('bad update current roster: ' + JSON.stringify(error));
+              }
+            );
+
+          }
+        );
+      }
+      else {
+        if ($scope.currentRosterName !== $scope.currentRoster.slug) {
+          // alert('we are changing teams')
+          var sourceRoster = $scope.currentRoster;
+
+          var filter = {
+            'filter[where][slug]':$scope.currentRosterName
+          };
+
+          var targetRoster = Roster.query(filter)
+            .$promise.
+            then(function (result) {
+              targetRoster = result[0];
+
+              // add player to target roster
+              player.slug = targetRoster.slug;
+              targetRoster.players.push(player);
+
+              for (var i = 0; i < $scope.currentRoster.players.length;i++) {
+                var curPlayer = $scope.currentRoster.players[i];
+                if (player.mlbid == curPlayer.mlbid) {
+                  $scope.currentRoster.players.splice(i,1);
+                }
+
+              }
+
+
+              // remove from current roster
+
+              // save current roster
+              Roster.upsert(targetRoster,
+                function(response) {
+                  console.log('good update target roster');
+                },
+                function(error) {
+                  console.log('bad update target roster: ' + JSON.stringify(error));
+                }
+              );
+
+              // save target roster
+              Roster.upsert($scope.currentRoster,
+                function(response) {
+                  console.log('good update current roster');
+                },
+                function(error) {
+                  console.log('bad update current roster: ' + JSON.stringify(error));
+                }
+              );
+
+              var save = 'save';
+
+            }
+          );
+        }
+        else {
+          if (player.mlbid){
+            angular.forEach($scope.currentRoster.players, function(value, key){
+              if (value.mlbid === player.mlbid){
+                console.log('matched player');
+                $scope.currentRoster.players[key] = player;
+                editConfirmed = true;
+              }
+            });
+          }
+          else {
+            $scope.currentRoster.players.push(player);
+            editConfirmed = true;
+          }
+
+
+          if (editConfirmed){
+            var rosterObj = $scope.currentRoster;
+            //delete rosterObj._id;
+            Roster.upsert(rosterObj,
+              function(response){
+                console.log('good update roster');
+                var filter = {
+                  'filter[where][slug]':$scope.currentRosterName
+                };
+                $scope.currentRoster = Roster.query(filter);
+                $scope.currentRoster.$promise.then(function (result) {
+                  $scope.currentRoster = result[0];
+
+                  $scope.players = $scope.currentRoster.players;
+                  $scope.player = {
+                    draftStatus:'roster',
+                    status:'regular',
+                    posType:'hitter'
+                  };
+                });
+              },
+              function(response){
+                console.log('bad update roster');
+              }
+            );
+          }
+
+        }
+      }
+
+
+
+
 
     };
 

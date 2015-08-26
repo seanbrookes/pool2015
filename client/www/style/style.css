@@ -158,6 +158,11 @@ div.pos-RP .nav-rank-list li.pos-RP a {
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 .side-nav-bar {
   background-color: #08592b;
   padding: 0;
